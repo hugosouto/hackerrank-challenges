@@ -9,21 +9,29 @@
 #         student_marks[name] = scores
 #     query_name = input()
 
+# Artificial data
+input = ('''3
+Krishna 67 68 69
+Arjun 70 98 63
+Malika 52 56 60
+Malika''')
+
+from io import StringIO
+
+# Convert the string data to a file-like object
+data_io = StringIO(input)
+
 if __name__ == '__main__':
-
-    # Artificial data
-    l1 = str('3')
-    l2 = str('Krishna 67 68 69')
-    l3 = str('Arjun 70 98 63')
-    l4 = str('Malika 52 56 60')
-    l5 = str('Malika')
-
-    n = l1
+    
+    # n = int(input())
+    n = int(data_io.readline())
     student_marks = {}
-    for _ in 'l' + str(_) in range(2, 5):
-        name, *line = input().split()
+
+    for _ in range(n):
+        # name, *line = input().split()
+        name, *line = data_io.readline().split()
         scores = list(map(float, line))
         student_marks[name] = scores
-    query_name = l5
-
-    print(student_marks)
+    query_name = data_io.readline().strip()
+    
+print(query_name)
