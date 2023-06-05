@@ -16,6 +16,7 @@ Arjun 70 98 63
 Malika 52 56 60
 Malika''')
 
+from statistics import mean
 from io import StringIO
 
 # Convert the string data to a file-like object
@@ -34,4 +35,5 @@ if __name__ == '__main__':
         student_marks[name] = scores
     query_name = data_io.readline().strip()
     
-print(query_name)
+    average_score = mean(student_marks[query_name])
+    print("{:.2f}".format(average_score))
