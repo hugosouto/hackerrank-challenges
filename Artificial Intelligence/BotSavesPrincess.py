@@ -26,11 +26,12 @@ data_io = StringIO(input)
 
 # Modified HackerHack code stub
 def displayPathtoPrincess(n,grid):
-    print(0)#print all the moves here
+    # Print all the moves here:
+    print('Test')
 
 m = int(data_io.readline())
 grid = [] 
 for i in range(0, m): 
-    grid.append(input().strip())
+    grid.append(data_io.readline().strip())
 
 displayPathtoPrincess(m,grid)
