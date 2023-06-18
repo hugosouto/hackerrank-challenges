@@ -81,12 +81,12 @@ raw_input = ('''5 6 7
 input = StringIO(raw_input)
 
 def compareTriplets(a, b):
-    i, x, y = 0, 0, 0
+    x, y = 0, 0
 
-    for i in len(a):
+    for i in range(len(a)):
         if a[i] > b[i]: x += 1
         elif a[i] < b[i]: y += 1
-    return print(x, y)
+    return x, y
 
 if __name__ == '__main__':
     fptr = tempfile.NamedTemporaryFile(mode='w', delete=True)
@@ -96,7 +96,7 @@ if __name__ == '__main__':
     b = list(map(int, input.readline().rstrip().split()))
 
     result = compareTriplets(a, b)
-
+    print(result)
     fptr.write(' '.join(map(str, result)))
     fptr.write('\n')
 
