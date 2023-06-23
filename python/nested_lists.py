@@ -1,3 +1,5 @@
+# TODO: #1 Create artificial input data for this script.
+
 # Original version
 # 
 # It uses a for loop to print each value in separated line.
