@@ -14,12 +14,6 @@ def mutate_string_alt(string, position, character):
     new_string = ''.join(l)
     return new_string
 
-# >>> string = "abracadabra"
-# >>> l = list(string)
-# >>> l[5] = 'k'
-# >>> string = ''.join(l)
-# >>> print string
-
 if __name__ == '__main__':
     s = input.readline()
     i, c = input.readline().split()
