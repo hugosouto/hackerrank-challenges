@@ -24,10 +24,11 @@ def hourglassSum(arr):
     
     sums = []
 
-    for i in range(6-2):
-        for j in range(6-2):
-            sums.append(sum(arr[i][j:j+3]) + sum(arr[i+1][j+1]) + sum(arr[i+2][j:j+3]))
-    return sum(sums)
+    for i in range(4):
+        for j in range(4):
+            sums.append(sum(arr[i][j:j+3]) + sum(arr[i+1][j+1:j+2]) + sum(arr[i+2][j:j+3]))
+    
+    return max(sums)
 
 if __name__ == '__main__':
     # fptr = open(os.environ['OUTPUT_PATH'], 'w')
