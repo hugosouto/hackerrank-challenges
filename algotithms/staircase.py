@@ -16,8 +16,9 @@ import random
 input = random.randint(1, 101)
 
 def staircase(n):
-    # Write your code here
-    return
+    
+    for i in range(n):
+        print(" " * (n - 1 - i) + "#" * (i + 1))
 
 if __name__ == '__main__':
     n = int(input)
