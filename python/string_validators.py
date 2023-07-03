@@ -7,33 +7,32 @@ input = StringIO(raw_data)
 if __name__ == '__main__':
     s = input.readline()
 
-    v = 'False'
+    alnum, alpha, digit, lower, upper = 'False', 'False', 'False', 'False', 'False'
+
     for _ in s:
-        if str.isalnum(s) == True: 
-            v = 'True'
-    print(v)
-    
-    v = 'False'
-    for _ in s:
+
+        if str.isalnum(s) == True:
+            alnum = 'True'
+            break
+
         if str.isalpha(s) == True:
-            v = 'True'
-    print(v)
-    
-    v = 'False'
-    for _ in s:
+            alpha = 'True'
+            break
+  
         if str.isdigit(s) == True:
-            v = 'True'
-    print(v)
-    
-    v = 'False'
-    for _ in s:
+            digit = 'True'
+            break
+
         if str.islower(s) == True:
-            v = 'True'
-    print(v)
-    
-    v = 'False'
-    for _ in s:
+            lower = 'True'
+            break
+
         if str.isupper(s) == True:
-            v = 'True'
-    print(v)
+            upper = 'True'
+            break
     
+    print(alnum)
+    print(alpha)
+    print(digit)
+    print(lower)
+    print(upper)
