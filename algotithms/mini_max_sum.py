@@ -13,13 +13,14 @@ from io import StringIO
 # The function accepts INTEGER_ARRAY arr as parameter.
 #
 
-raw_input = "1 2 3 4 5"
+raw_input = "7 69 2 221 8974"
 
 input = StringIO(raw_input)
 
 def miniMaxSum(arr):
-    
-    return
+    min = sum(sorted(arr)[:4])
+    max = sum(sorted(arr)[1:])
+    return print(min, max)
 
 if __name__ == '__main__':
 
