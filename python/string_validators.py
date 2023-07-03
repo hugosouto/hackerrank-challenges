@@ -9,25 +9,28 @@ if __name__ == '__main__':
 
     alnum, alpha, digit, lower, upper = 'False', 'False', 'False', 'False', 'False'
 
-    for _ in s:
-
-        if str.isalnum(s) == True:
+    for i in s:
+        if str.isalnum(i) == True:
             alnum = 'True'
             break
 
-        if str.isalpha(s) == True:
+    for i in s:
+        if str.isalpha(i) == True:
             alpha = 'True'
             break
-  
-        if str.isdigit(s) == True:
+
+    for i in s:
+        if str.isdigit(i) == True:
             digit = 'True'
             break
 
-        if str.islower(s) == True:
+    for i in s:
+        if str.islower(i) == True:
             lower = 'True'
             break
 
-        if str.isupper(s) == True:
+    for i in s:
+        if str.isupper(i) == True:
             upper = 'True'
             break
     
