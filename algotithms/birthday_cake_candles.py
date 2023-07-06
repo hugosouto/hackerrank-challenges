@@ -1,31 +1,30 @@
-#!/bin/python3
+# Imports
+import tempfile
+from io import StringIO
 
-import math
-import os
-import random
-import re
-import sys
+# Data
+raw_data = """4
+3 2 1 3"""
 
-#
-# Complete the 'birthdayCakeCandles' function below.
-#
-# The function is expected to return an INTEGER.
-# The function accepts INTEGER_ARRAY candles as parameter.
-#
+input = StringIO(raw_data)
 
+# Solution
 def birthdayCakeCandles(candles):
-    # Write your code here
-    return
+    highest_num = max(candles)
+    return candles.count(highest_num)
 
+# Main
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    fptr = tempfile.NamedTemporaryFile(mode='w')
+        
+    candles_count = int(input.readline().strip())
 
-    candles_count = int(input().strip())
+    candles = list(map(int, input.readline().rstrip().split()))
 
-    candles = list(map(int, input().rstrip().split()))
-
-    result = biarthdayCakeCandles(candles)
+    result = birthdayCakeCandles(candles)
 
     fptr.write(str(result) + '\n')
 
     fptr.close()
+
+    print(result)
