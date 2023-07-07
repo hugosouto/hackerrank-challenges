@@ -1,24 +1,70 @@
-#Replace all ______ with rjust, ljust or center. 
+## Sample Output
 
-thickness = int(input()) #This must be an odd number
+# thickness = 5
+# 
+#     H    
+#    HHH   
+#   HHHHH  
+#  HHHHHHH 
+# HHHHHHHHH
+#   HHHHH               HHHHH             
+#   HHHHH               HHHHH             
+#   HHHHH               HHHHH             
+#   HHHHH               HHHHH             
+#   HHHHH               HHHHH             
+#   HHHHH               HHHHH             
+#   HHHHHHHHHHHHHHHHHHHHHHHHH   
+#   HHHHHHHHHHHHHHHHHHHHHHHHH   
+#   HHHHHHHHHHHHHHHHHHHHHHHHH   
+#   HHHHH               HHHHH             
+#   HHHHH               HHHHH             
+#   HHHHH               HHHHH             
+#   HHHHH               HHHHH             
+#   HHHHH               HHHHH             
+#   HHHHH               HHHHH             
+#                     HHHHHHHHH 
+#                      HHHHHHH  
+#                       HHHHH   
+#                        HHH    
+#                         H 
+
+## Constraints
+
+# The thickness must be an odd number.
+# 0 < thickness < 501
+
+## Imports
+import random
+from io import StringIO
+
+## Simulate Input
+random_num = random.randint(1, 49)
+
+if random_num % 2 == 0:
+    random_num += 1
+
+input = StringIO(str(random_num))
+
+## Solution
+thickness = int(input.readline()) #This must be an odd number
 c = 'H'
 
-#Top Cone
+# Top Cone
 for i in range(thickness):
-    print((c*i).______(thickness-1)+c+(c*i).______(thickness-1))
+    print((c*i).rjust(thickness-1)+c+(c*i).ljust(thickness-1))
 
-#Top Pillars
+# Top Pillars
 for i in range(thickness+1):
-    print((c*thickness).______(thickness*2)+(c*thickness).______(thickness*6))
+    print((c*thickness).center(thickness*2)+(c*thickness).center(thickness*6))
 
-#Middle Belt
+# Middle Belt
 for i in range((thickness+1)//2):
-    print((c*thickness*5).______(thickness*6))    
+    print((c*thickness*5).center(thickness*6))    
 
-#Bottom Pillars
+# Bottom Pillars
 for i in range(thickness+1):
-    print((c*thickness).______(thickness*2)+(c*thickness).______(thickness*6))    
+    print((c*thickness).center(thickness*2)+(c*thickness).center(thickness*6))    
 
-#Bottom Cone
+# Bottom Cone
 for i in range(thickness):
-    print(((c*(thickness-i-1)).______(thickness)+c+(c*(thickness-i-1)).______(thickness)).______(thickness*6))
+    print(((c*(thickness-i-1)).rjust(thickness)+c+(c*(thickness-i-1)).ljust(thickness)).rjust(thickness*6))
