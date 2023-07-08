@@ -10,7 +10,7 @@ input = StringIO(raw_data)
 
 # Solution
 def wrap(string, max_width):
-    return
+    return textwrap.fill(string, width=max_width)
 
 # Main
 if __name__ == '__main__':
