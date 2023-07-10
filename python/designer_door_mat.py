@@ -62,3 +62,32 @@ Output the design pattern.
 '''
 
 # Read input from STDIN. Print output to STDOUT
+
+# Imports
+from io import StringIO
+
+# Data
+raw_data = '9 27'
+# raw_data = '7 21'
+
+input = StringIO(raw_data)
+
+# Solution
+N, M = map(int, input.readline().split())
+
+dash = '-'
+dot = '.|.'
+
+for i in range(N//2):
+    print(str(dash*((M//2)-1-3*i)).rjust(((M//2)-1-3*i)) + 
+          dot * (i+1) + dot * (i) +
+          str(dash*((M//2)-1-3*i)).ljust(((M//2)-1-3*i)))
+
+print(str(dash*((M//2)-3)).rjust(((M//2)-3)) + 
+      'WELCOME' +
+      str(dash*((M//2)-3)).ljust(((M//2)-3)))
+
+for i in reversed(range(N//2)):
+    print(str(dash*((M//2)-1-3*i)).rjust(((M//2)-1-3*i)) +
+          dot * (i+1) + dot * (i) +
+          str(dash*((M//2)-1-3*i)).ljust(((M//2)-1-3*i)))
