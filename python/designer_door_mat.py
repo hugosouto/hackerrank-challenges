@@ -64,11 +64,14 @@ Output the design pattern.
 # Read input from STDIN. Print output to STDOUT
 
 # Imports
+import random
 from io import StringIO
 
 # Data
-raw_data = '9 27'
-# raw_data = '7 21'
+n = random.randrange(7, 99, 2)
+m = n * 3
+
+raw_data = f'{n} {m}'
 
 input = StringIO(raw_data)
 
