@@ -1,6 +1,6 @@
 import random
 
-input = random.randint(1, 20)
+input = random.randint(1, 99)
 
 def print_formatted(number):
     padding = len(str(bin(number)[2:]))
