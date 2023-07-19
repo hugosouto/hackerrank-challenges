@@ -83,7 +83,8 @@ dot = '.|.'
 
 for i in range(N//2):
     print(str(dash*((M//2)-1-3*i)).rjust(((M//2)-1-3*i)) + 
-          dot * (i+1) + dot * (i) +
+          dot*(i+1) + 
+          dot*(i) +
           str(dash*((M//2)-1-3*i)).ljust(((M//2)-1-3*i)))
 
 print(str(dash*((M//2)-3)).rjust(((M//2)-3)) + 
@@ -92,5 +93,6 @@ print(str(dash*((M//2)-3)).rjust(((M//2)-3)) +
 
 for i in reversed(range(N//2)):
     print(str(dash*((M//2)-1-3*i)).rjust(((M//2)-1-3*i)) +
-          dot * (i+1) + dot * (i) +
+          dot*(i+1) + 
+          dot*(i) +
           str(dash*((M//2)-1-3*i)).ljust(((M//2)-1-3*i)))
