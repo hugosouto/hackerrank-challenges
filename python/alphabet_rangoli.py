@@ -1,3 +1,47 @@
+# Expected Output
+
+# Size 3
+# 
+# ----c----
+# --c-b-c--
+# c-b-a-b-c
+# --c-b-c--
+# ----c----
+
+# Size 5
+# 
+# --------e--------
+# ------e-d-e------
+# ----e-d-c-d-e----
+# --e-d-c-b-c-d-e--
+# e-d-c-b-a-b-c-d-e
+# --e-d-c-b-c-d-e--
+# ----e-d-c-d-e----
+# ------e-d-e------
+# --------e--------
+
+# Size 10
+# 
+# ------------------j------------------
+# ----------------j-i-j----------------
+# --------------j-i-h-i-j--------------
+# ------------j-i-h-g-h-i-j------------
+# ----------j-i-h-g-f-g-h-i-j----------
+# --------j-i-h-g-f-e-f-g-h-i-j--------
+# ------j-i-h-g-f-e-d-e-f-g-h-i-j------
+# ----j-i-h-g-f-e-d-c-d-e-f-g-h-i-j----
+# --j-i-h-g-f-e-d-c-b-c-d-e-f-g-h-i-j--
+# j-i-h-g-f-e-d-c-b-a-b-c-d-e-f-g-h-i-j
+# --j-i-h-g-f-e-d-c-b-c-d-e-f-g-h-i-j--
+# ----j-i-h-g-f-e-d-c-d-e-f-g-h-i-j----
+# ------j-i-h-g-f-e-d-e-f-g-h-i-j------
+# --------j-i-h-g-f-e-f-g-h-i-j--------
+# ----------j-i-h-g-f-g-h-i-j----------
+# ------------j-i-h-g-h-i-j------------
+# --------------j-i-h-i-j--------------
+# ----------------j-i-j----------------
+# ------------------j------------------
+
 # Imports
 import random
 import string
@@ -16,9 +60,6 @@ def print_rangoli(size):
     letters = string.ascii_lowercase
     dash = "-"
     paddding = (size-1)*2
-    # letters = [dash]
-    # letters.extend(string.ascii_lowercase)
-    # print(letters)
     
     print(
             str(dash*(paddding)).rjust(paddding) + 
@@ -29,10 +70,10 @@ def print_rangoli(size):
     for i in range(1, size-1):
 
         print(
-            str(dash*(paddding-i*2)).rjust(paddding-i*2) + 
-            dash.join(reversed(letters[i-1]*(i))) +
-            dash + str(letters[size-1-i]) + dash +
-            dash.join(letters[i-1]*(i)) +
+            str(dash*(paddding-i*2)) + 
+            dash.join(reversed(letters[size-1-i:size])) +
+            dash +
+            dash.join(letters[size-i:size]) +
             str(dash*(paddding-i*2)).ljust(paddding-i*2)
         )
 
@@ -41,10 +82,10 @@ def print_rangoli(size):
     for i in reversed(range(1, size-1)):
 
         print(
-            str(dash*(paddding-i*2)).rjust(paddding-i*2) + 
-            dash.join(reversed(letters[i-1]*(i))) +
-            dash + str(letters[size-1-i]) + dash +
-            dash.join(letters[i-1]*(i)) +
+            str(dash*(paddding-i*2)) + 
+            dash.join(reversed(letters[size-1-i:size])) +
+            dash +
+            dash.join(letters[size-i:size]) +
             str(dash*(paddding-i*2)).ljust(paddding-i*2)
         )
     
