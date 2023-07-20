@@ -48,7 +48,8 @@ import string
 from io import StringIO
 
 # Data
-size = random.randint(1, 26)
+# size = random.randint(1, 26)
+size = 1
 
 input = StringIO(str(size))
 
@@ -59,38 +60,41 @@ def print_rangoli(size):
     dash = "-"
     paddding = (size-1)*2
     
-    print(
+    if size == 1:
+        print("a")
+    
+    else:
+        print(
+                str(dash*(paddding)).rjust(paddding) + 
+                str(letters[size-1]) +
+                str(dash*(paddding)).ljust(paddding)
+            )
+        
+        for i in range(1, size-1):
+            print(
+                str(dash*(paddding-i*2)) + 
+                dash.join(reversed(letters[size-1-i:size])) +
+                dash +
+                dash.join(letters[size-i:size]) +
+                str(dash*(paddding-i*2)).ljust(paddding-i*2)
+            )
+
+        print(dash.join(reversed(letters[:size])) + dash + dash.join(letters[1:size]))
+
+        for i in reversed(range(1, size-1)):
+            print(
+                str(dash*(paddding-i*2)) + 
+                dash.join(reversed(letters[size-1-i:size])) +
+                dash +
+                dash.join(letters[size-i:size]) +
+                str(dash*(paddding-i*2)).ljust(paddding-i*2)
+            )
+        
+        print(
             str(dash*(paddding)).rjust(paddding) + 
             str(letters[size-1]) +
             str(dash*(paddding)).ljust(paddding)
         )
-    
-    for i in range(1, size-1):
-        print(
-            str(dash*(paddding-i*2)) + 
-            dash.join(reversed(letters[size-1-i:size])) +
-            dash +
-            dash.join(letters[size-i:size]) +
-            str(dash*(paddding-i*2)).ljust(paddding-i*2)
-        )
-
-    print(dash.join(reversed(letters[:size])) + dash + dash.join(letters[1:size]))
-
-    for i in reversed(range(1, size-1)):
-        print(
-            str(dash*(paddding-i*2)) + 
-            dash.join(reversed(letters[size-1-i:size])) +
-            dash +
-            dash.join(letters[size-i:size]) +
-            str(dash*(paddding-i*2)).ljust(paddding-i*2)
-        )
-    
-    print(
-        str(dash*(paddding)).rjust(paddding) + 
-        str(letters[size-1]) +
-        str(dash*(paddding)).ljust(paddding)
-    )
-    return
 
 # Main
 if __name__ == '__main__':
