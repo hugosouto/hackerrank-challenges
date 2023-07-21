@@ -7,6 +7,7 @@ import os
 import random
 import re
 import sys
+import tempfile
 from io import StringIO
 
 #
@@ -29,7 +30,8 @@ def timeConversion(s):
 
 # Main
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    fptr = tempfile.NamedTemporaryFile(mode='w', delete=True)
 
     s = input.readline()
 
