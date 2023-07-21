@@ -1,8 +1,14 @@
 <h1>HackerRank Solutions Repository</h1>
 <p>
-  This repository provides solutions for various challenges in the domains of
-  Algorithms, Artificial Intelligence, Data Structures, and Python programming
-  language from the HackerRank platform.
+  This repository provides original solutions for various challenges in the domains of
+  Python programming language, Algorithms, Data Structures, and Artificial Intelligence
+  from the HackerRank platform.
+</p>
+<p>
+  All solutions were originally developed by [Hugo Souto](www.github.com/hugosouto) without
+  any direct AI assistance (GitHub Copilot, OpenAI ChatGPT/GPT, Google Bard, Anthropic Claude, 
+  VS Code extensions or others). IntelliCode-like tools, programming language references, 
+  books, or generic web content may have been used.
 </p>
 <h2>Introduction</h2>
 <p>
