@@ -17,7 +17,7 @@ from io import StringIO
 #
 
 # Sample Input
-raw_data = ''
+raw_data = '07:05:45PM'
 
 # Data
 input = StringIO(raw_data)
