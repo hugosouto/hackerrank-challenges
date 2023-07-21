@@ -1,44 +1,39 @@
 #!/bin/python3
 
-import math
-import os
-import random
-import re
-import sys
-import tempfile
+# Imports
 from io import StringIO
 
-#
-# Complete the 'dynamicArray' function below.
-#
-# The function is expected to return an INTEGER_ARRAY.
-# The function accepts following parameters:
-#  1. INTEGER n
-#  2. 2D_INTEGER_ARRAY queries
-#
-
 # Sample Input
-raw_data = """5 5
+raw_data = """2 5
 1 0 5
 1 1 7
 1 0 3
 2 1 0
 2 1 1"""
 
+# Data
 input = StringIO(raw_data)
 
 # Solution
 def dynamicArray(n, queries):
-    arr = []
-    for i in range(n):
-        arr.append(i)
-    return arr
+    
+    arr = [[] for _ in range(n)]
+    lastAnswer = 0
+    answers = []
+
+    for query in queries:
+    
+        if query[0] == 1:
+           idx = (query[1] ^ lastAnswer) % n
+           arr[idx].append(query[2])
+
+        if query[0] == 2:
+            idx = (query[1] ^ lastAnswer) % n
+            lastAnswer = arr[idx][query[2] % len(arr[idx])]
+            print(lastAnswer)
 
 # Main
 if __name__ == '__main__':
-    # Create a temporary file
-    fptr = tempfile.NamedTemporaryFile(mode='w', delete=True) 
-    # Original code: fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
     first_multiple_input = input.readline().rstrip().split()
 
@@ -46,15 +41,6 @@ if __name__ == '__main__':
 
     q = int(first_multiple_input[1])
 
-    queries = []
+    queries = [list(map(int, input.readline().rstrip().split())) for _ in range(q)]
 
-    for _ in range(q):
-        queries.append(list(map(int, input.readline().rstrip().split())))
-
-    result = dynamicArray(n, queries)
-    print(result)
-
-    fptr.write('\n'.join(map(str, result)))
-    fptr.write('\n')
-
-    fptr.close()
+    dynamicArray(n, queries)
