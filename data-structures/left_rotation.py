@@ -31,8 +31,6 @@ def rotateLeft(d, arr):
                 arr[i] = temp[0]
             else:
                 arr[i] = temp[i+1]
-        print(arr)
-
     return arr
 
 # Main
