@@ -7,6 +7,7 @@ import random
 import re
 import sys
 import tempfile
+import timeit
 from io import StringIO
 
 # Input Simulation
@@ -31,6 +32,8 @@ def rotateLeft(d, arr):
                 arr[i] = temp[0]
             else:
                 arr[i] = temp[i+1]
+
+    print(timeit.timeit())
     return arr
 
 # Main
@@ -47,7 +50,7 @@ if __name__ == '__main__':
     arr = list(map(int, input.readline().rstrip().split()))
 
     result = rotateLeft(d, arr)
-    # print(result)
+    print(result)
 
     fptr.write(' '.join(map(str, result)))
     fptr.write('\n')
