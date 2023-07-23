@@ -18,7 +18,22 @@ input = StringIO(raw_input)
 
 # Solution
 def rotateLeft(d, arr):
-    return ''
+
+    # Iterates d times
+    for _ in range(d):
+        # Create copy for index searching while numbers are changing
+        temp = arr.copy()
+
+        # Iterate each position on arr
+        for i in range(len(arr)):
+            # If condition to solve the last position
+            if i == (len(temp)-1):
+                arr[i] = temp[0]
+            else:
+                arr[i] = temp[i+1]
+        print(arr)
+
+    return arr
 
 # Main
 if __name__ == '__main__':
@@ -34,7 +49,7 @@ if __name__ == '__main__':
     arr = list(map(int, input.readline().rstrip().split()))
 
     result = rotateLeft(d, arr)
-    print(result)
+    # print(result)
 
     fptr.write(' '.join(map(str, result)))
     fptr.write('\n')
