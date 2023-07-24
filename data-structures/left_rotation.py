@@ -1,11 +1,6 @@
 #!/bin/python3
 
 # Imports
-import math
-import os
-import random
-import re
-import sys
 import tempfile
 import timeit
 from io import StringIO
@@ -20,20 +15,10 @@ input = StringIO(raw_input)
 # Solution
 def rotateLeft(d, arr):
 
-    # Iterates d times
-    for _ in range(d):
-        # Create copy for index searching while numbers are changing
-        temp = arr.copy()
+    slice = arr[:d]
+    sliced_arr = arr[d:]
+    arr = sliced_arr + slice
 
-        # Iterate each position on arr
-        for i in range(len(arr)):
-            # If condition to solve the last position
-            if i == (len(temp)-1):
-                arr[i] = temp[0]
-            else:
-                arr[i] = temp[i+1]
-
-    print(timeit.timeit())
     return arr
 
 # Main
