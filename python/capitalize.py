@@ -10,14 +10,15 @@ import tempfile
 from io import StringIO
 
 # Sample Input
-raw_data = "chris alan"
+# raw_data = "chris alan"
+raw_data = "1 w 2 r 3g"
 
 # Data
 input = StringIO(raw_data)
 
 # Solution
 def solve(s):
-    return ''
+    return str.title(s)
 
 # Main
 if __name__ == '__main__':
