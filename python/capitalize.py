@@ -42,6 +42,7 @@ if __name__ == '__main__':
     # fptr = open(os.environ['OUTPUT_PATH'], 'w')
     fptr = tempfile.NamedTemporaryFile(mode='w', delete=True)
 
+    # TODO: #2 Make loop for applying function in all string of raw_data once
     s = input.readline()
 
     result = solve(s)
