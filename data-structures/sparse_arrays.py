@@ -28,7 +28,15 @@ from io import StringIO
 #
 
 # Data
-raw_data = None
+raw_data = '''4
+aba
+baba
+aba
+xzxb
+3
+aba
+xzxb
+ab'''
 
 # Input Simulation
 input = StringIO(raw_data)
