@@ -11,21 +11,9 @@ Problem: https://www.hackerrank.com/challenges/sparse-arrays/problem
 '''
 
 # Imports
-import math
-import os
-import random
-import re
-import sys
 import tempfile
 from io import StringIO
-#
-# Complete the 'matchingStrings' function below.
-#
-# The function is expected to return an INTEGER_ARRAY.
-# The function accepts following parameters:
-#  1. STRING_ARRAY stringList
-#  2. STRING_ARRAY queries
-#
+
 
 # Data
 raw_data = '''4
@@ -38,13 +26,50 @@ aba
 xzxb
 ab'''
 
+# raw_data = '''13
+# abcde
+# sdaklfj
+# asdjf
+# na
+# basdn
+# sdaklfj
+# asdjf
+# na
+# asdjf
+# na
+# basdn
+# sdaklfj
+# asdjf
+# 5
+# abcde
+# sdaklfj
+# asdjf
+# na
+# basdn'''
+
 # Input Simulation
 input = StringIO(raw_data)
 
 # Solution
 def matchingStrings(stringList, queries):
-    # Write your code here
-    return ''
+    """Determine the number of times a string has previously appeared."""
+    
+    print(stringList)
+    print(queries)
+    
+    x = 0
+    counts = []
+    for stringList in queries:
+        if stringList == queries[_]:
+            x += 1
+
+        print('stringList:',stringList)
+        print('queries:',queries[_])
+        
+        counts.append(x)
+    # print(counts)
+
+    return counts
 
 # Main
 if __name__ == '__main__':
@@ -54,20 +79,19 @@ if __name__ == '__main__':
     stringList_count = int(input.readline().strip())
 
     stringList = []
-
     for _ in range(stringList_count):
-        stringList_item = input.readline()
+        stringList_item = input.readline().strip()
         stringList.append(stringList_item)
 
     queries_count = int(input.readline().strip())
-
+    
     queries = []
-
     for _ in range(queries_count):
-        queries_item = input.readline()
+        queries_item = input.readline().strip()
         queries.append(queries_item)
 
     res = matchingStrings(stringList, queries)
+    print(res)
 
     fptr.write('\n'.join(map(str, res)))
     fptr.write('\n')
