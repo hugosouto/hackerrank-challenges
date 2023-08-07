@@ -1,2 +1,1 @@
-Make Copilot ignore the repository:
-*
+*.py
