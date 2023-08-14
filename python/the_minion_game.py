@@ -21,19 +21,20 @@ input = StringIO(raw_data)
 # Solution
 def minion_game(string):
     
-    # s, k = []
+    s, k = [], []
     for i in string:
+        for j in string:
+            # print(i+j)
 
-        # print(i)
-
-        # TODO: Make the condition: 'if i is not equal to vowels:'.
-        if str(i).upper == ['A', 'E', 'I', 'O', 'U']:
-            # TODO: Multiply each letter for each letter.
-            print(i*i)
-            # s.append(a)
-        # elif str(i).upper != ['A', 'E', 'I', 'O', 'U']:
-            # print(i*i)
-
+            # TODO: Make the condition: 'if i is not equal to vowels' work properly.
+            # print(j)
+            if str(j) == str(any(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'])):
+                # TODO: Multiply each letter for each letter.
+                # print(i*i)
+                k.append(i)
+            else: # i.upper != ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']:
+                s.append(j)
+        print('s:', ''.join(s), 'k:', ''.join(k))
     return
 
 # Main
