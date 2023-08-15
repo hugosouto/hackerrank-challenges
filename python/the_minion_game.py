@@ -9,11 +9,12 @@ Problem: https://www.hackerrank.com/challenges/the-minion-game/problem
 '''
 
 # Imports
-import string
 from io import StringIO
 
 # Data
-raw_data = "BANANA"
+raw_data = "BANANA" # Expected output: Stuart 12
+raw_data = "BAANANAS" # Expected output: Kevin 19
+raw_data = "AANANAS" # Expected output: Kevin 12
 
 # Simulate User Input
 input = StringIO(raw_data)
@@ -22,20 +23,37 @@ input = StringIO(raw_data)
 def minion_game(string):
     
     s, k = [], []
-    for i in string:
-        for j in string:
-            # print(i+j)
+    for i in range(len(string)):
+        # print(i)
 
-            # TODO: Make the condition: 'if i is not equal to vowels' work properly.
-            # print(j)
-            if str(j) == str(any(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'])):
-                # TODO: Multiply each letter for each letter.
-                # print(i*i)
-                k.append(i)
-            else: # i.upper != ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']:
-                s.append(j)
-        print('s:', ''.join(s), 'k:', ''.join(k))
-    return
+        for j in range(len(string)):
+
+            if j > i:
+                if string[i].upper not in ['A', 'E', 'I', 'O', 'U']:
+                    s.append(string[i:j])
+                else:
+                    k.append(string[i:j])
+
+    s = set(s)
+    k = set(k)
+    
+    s_score, k_score = 0, 0
+    for i in s:
+        if i in string:
+            s_score += 1
+    
+    for i in k:
+        if i in string:
+            k_score += 1
+
+    if s_score == k_score:
+        result = 'Draw'
+    elif s_score > k_score:
+        result = f'Stuart {s_score}'
+    else:
+        result = f'Kevin {k_score}'
+    
+    return print(result)
 
 # Main
 if __name__ == '__main__':
