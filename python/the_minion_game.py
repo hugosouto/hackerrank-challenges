@@ -30,26 +30,15 @@ def minion_game(string):
     
     start_time_funtion = time.time()
 
-    s, k = [], []
     s_score, k_score = 0, 0
 
     for i in range(len(string)+1):
-
         for j in range(len(string)+1):
-
-            if j > i:
-                new_string = string[i:j+1]
+            if j > i and string[i:j+1] in string:
                 if string[i] not in ['A', 'E', 'I', 'O', 'U']:
-                    s.append(new_string)
-                    if new_string in string:
-                        s_score += 1
+                    s_score += 1
                 else:
-                    k.append(new_string)
-                    if new_string in string:
-                        k_score += 1
-
-    end_time_loops = time.time()
-    print(f"Execution time of loops: {end_time_loops - start_time_funtion} seconds")
+                    k_score += 1
 
     if s_score == k_score:
         result = 'Draw'
@@ -57,7 +46,7 @@ def minion_game(string):
         result = f'Stuart {s_score}'
     else:
         result = f'Kevin {k_score}'
-
+    
     end_time_function = time.time()
     print(f"Execution time of function: {end_time_function - start_time_funtion} seconds")
 
