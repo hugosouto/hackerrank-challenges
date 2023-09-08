@@ -9,7 +9,9 @@ Problem: https://www.hackerrank.com/challenges/the-minion-game/problem
 '''
 
 # Imports
+import os
 import time
+from profilehooks import profile
 from io import StringIO
 
 # Data
@@ -26,12 +28,18 @@ input = StringIO(raw_data)
 
 # Solution
 # TODO: Optimize
+
+
+# Generate profile of funtion
+filename = os.path.splitext(os.path.basename(__file__))[0]
+@profile(stdout=False, filename=f'python/profiles/{filename}.prof')
+# To view the profile, run: python -m snakeviz python/profiles/the_minion_game.prof
+
 def minion_game(string):
     
     start_time_funtion = time.time()
 
     s_score, k_score = 0, 0
-
     for i in range(len(string)+1):
         for j in range(len(string)+1):
             if j > i and string[i:j+1] in string:
