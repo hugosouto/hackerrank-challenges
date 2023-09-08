@@ -11,7 +11,6 @@ Problem: https://www.hackerrank.com/challenges/the-minion-game/problem
 # Imports
 import time
 from io import StringIO
-from profilehooks import coverage
 
 # Data
 # raw_data = "BANANA" # Expected output: Stuart 12
@@ -28,8 +27,16 @@ input = StringIO(raw_data)
 # Solution
 # TODO: Optimize code
 
+# Generate profile line by line
+# First step:  pip install line-profiler
+# Second step: Uncomment @profile below
+# Third step:  kernprof -l --view --unit 1e-3 python/the_minion_game.py
+# @profile
+
 # Generate coverage of funtion
+# from profilehooks import coverage
 # @coverage
+
 def minion_game(string):
 
     start_time_funtion = time.time()
@@ -37,8 +44,13 @@ def minion_game(string):
     str_len = len(string)+1
     vowels = ['A', 'E', 'I', 'O', 'U']
 
-    s_score = len([string[i:j+1] for i in range(str_len) for j in range(i+1, str_len) if string[i:j+1] in string and string[i] not in vowels])
-    k_score = len([string[i:j+1] for i in range(str_len) for j in range(i+1, str_len) if string[i:j+1] in string and string[i] in vowels])
+    substrings = [string[i:j+1] for i in range(str_len) for j in range(i+1, str_len) if string[i:j+1] in string]    
+    s_score, k_score = 0, 0
+    for s in substrings:
+        if s[0] not in vowels:
+            s_score += 1
+        else:
+            k_score += 1
 
     print(f"Stuart: {s_score}", f"Kevin: {k_score}")
 
@@ -53,7 +65,6 @@ def minion_game(string):
     print(f"Execution time of function: {end_time_function - start_time_funtion} seconds")
 
     return print(result)
-
 
 # Main
 if __name__ == '__main__':
