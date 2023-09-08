@@ -30,17 +30,17 @@ input = StringIO(raw_data)
 
 # Generate coverage of funtion
 # @coverage
-
 def minion_game(string):
 
     start_time_funtion = time.time()
     
     str_len = len(string)+1
+    vowels = ['A', 'E', 'I', 'O', 'U']
 
-    s = [string[i:j+1] for i in range(str_len) for j in range(i+1, str_len) if string[i:j+1] in string and string[i] not in ['A', 'E', 'I', 'O', 'U']]
-    k = [string[i:j+1] for i in range(str_len) for j in range(i+1, str_len) if string[i:j+1] in string and string[i] in ['A', 'E', 'I', 'O', 'U']]
+    s_score = len([string[i:j+1] for i in range(str_len) for j in range(i+1, str_len) if string[i:j+1] in string and string[i] not in vowels])
+    k_score = len([string[i:j+1] for i in range(str_len) for j in range(i+1, str_len) if string[i:j+1] in string and string[i] in vowels])
 
-    s_score, k_score = len(s), len(k)
+    print(f"Stuart: {s_score}", f"Kevin: {k_score}")
 
     if s_score == k_score:
         result = 'Draw'
