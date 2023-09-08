@@ -1,6 +1,8 @@
 # User entries
 .vscode
 */profiles/*
+*.prof
+*.lprof
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
