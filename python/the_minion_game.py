@@ -9,10 +9,9 @@ Problem: https://www.hackerrank.com/challenges/the-minion-game/problem
 '''
 
 # Imports
-import os
 import time
-from profilehooks import profile
 from io import StringIO
+from profilehooks import coverage
 
 # Data
 # raw_data = "BANANA" # Expected output: Stuart 12
@@ -27,26 +26,21 @@ raw_data = "BANAASABANAASABANAASABANAASABANAASABANAASABANAASABANAASABANAASABANAA
 input = StringIO(raw_data)
 
 # Solution
-# TODO: Optimize
+# TODO: Optimize code
 
-
-# Generate profile of funtion
-filename = os.path.splitext(os.path.basename(__file__))[0]
-@profile(stdout=False, filename=f'python/profiles/{filename}.prof')
-# To view the profile, run: python -m snakeviz python/profiles/the_minion_game.prof
+# Generate coverage of funtion
+# @coverage
 
 def minion_game(string):
-    
-    start_time_funtion = time.time()
 
-    s_score, k_score = 0, 0
-    for i in range(len(string)+1):
-        for j in range(len(string)+1):
-            if j > i and string[i:j+1] in string:
-                if string[i] not in ['A', 'E', 'I', 'O', 'U']:
-                    s_score += 1
-                else:
-                    k_score += 1
+    start_time_funtion = time.time()
+    
+    str_len = len(string)+1
+
+    s = [string[i:j+1] for i in range(str_len) for j in range(i+1, str_len) if string[i:j+1] in string and string[i] not in ['A', 'E', 'I', 'O', 'U']]
+    k = [string[i:j+1] for i in range(str_len) for j in range(i+1, str_len) if string[i:j+1] in string and string[i] in ['A', 'E', 'I', 'O', 'U']]
+
+    s_score, k_score = len(s), len(k)
 
     if s_score == k_score:
         result = 'Draw'
@@ -59,6 +53,7 @@ def minion_game(string):
     print(f"Execution time of function: {end_time_function - start_time_funtion} seconds")
 
     return print(result)
+
 
 # Main
 if __name__ == '__main__':
