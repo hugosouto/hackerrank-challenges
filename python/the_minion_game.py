@@ -71,10 +71,7 @@ def test_function(runs):
     
     times = []
     for _ in range(runs):
-        # start_time_test = time.time()
-        # Attibute the 2 first outputs of the function to variables   
         function_execution_time, _ = minion_game(s)
-        # end_time_test = time.time()
         print(function_execution_time)
         times.append(function_execution_time)
     
