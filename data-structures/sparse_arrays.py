@@ -53,16 +53,13 @@ input = StringIO(raw_data)
 def matchingStrings(stringList, queries):
     """Determine the number of times a string has previously appeared."""
     
-    # print(stringList)
-    # print(queries)
-    
     counts = []
     for q in queries:
         count = 0
-        if q in stringList:
-            count += 1 
+        for s in stringList:
+            if q == s:
+                count += 1 
         counts.append(count)
-    # print(counts)
 
     return counts
 
