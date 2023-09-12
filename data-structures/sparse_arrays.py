@@ -14,7 +14,6 @@ Problem: https://www.hackerrank.com/challenges/sparse-arrays/problem
 import tempfile
 from io import StringIO
 
-
 # Data
 raw_data = '''4
 aba
@@ -54,19 +53,15 @@ input = StringIO(raw_data)
 def matchingStrings(stringList, queries):
     """Determine the number of times a string has previously appeared."""
     
-    print(stringList)
-    print(queries)
+    # print(stringList)
+    # print(queries)
     
-    x = 0
     counts = []
-    for stringList in queries:
-        if stringList == queries[_]:
-            x += 1
-
-        print('stringList:',stringList)
-        print('queries:',queries[_])
-        
-        counts.append(x)
+    for q in queries:
+        count = 0
+        if q in stringList:
+            count += 1 
+        counts.append(count)
     # print(counts)
 
     return counts
