@@ -13,8 +13,18 @@ Problem: https://www.hackerrank.com/challenges/merge-the-tools/problem
 from io import StringIO
 
 # Simulate HackerRank Input Data
-raw_data = '''AABCAAADA
+
+# Problem example data:
+raw_data = '''AAABCADDE
 3'''
+# Expected output:
+# A
+# BCA
+# DE
+
+# Test case data:
+# raw_data = '''AABCAAADA
+# 3'''
 
 input = StringIO(raw_data)
 
