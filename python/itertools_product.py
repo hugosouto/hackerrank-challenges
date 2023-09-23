@@ -45,5 +45,11 @@ for i in prd_lst:
     temp1.append(''.join(temp2)) 
 print(temp1)
 
+
+C = [[1,2,3],[3,4,5]]
+print('C:', C)
+print('*C:', *C)
+print(list(product(*C)))
+
 # (x,y) for x in A for y in B)
 # product(A, B) returns the same as (
