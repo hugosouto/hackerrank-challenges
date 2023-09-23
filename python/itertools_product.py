@@ -8,48 +8,32 @@ Task: Find the cartesian product of 2 sets.
 Problem: https://www.hackerrank.com/challenges/itertools-product/problem
 '''
 
-# Data
-A = [1, 2]
-B = [3, 4, 5]
-
-
-# Exploration Exercises
-
-# For Loop concatenation
-print('For Loop iteration:')
-lst = []
-for a in A:
-    for b in B:
-        lst.append(str(a) + str(b))
-print(lst)
-
-# List Comprehension concatenation
-print('List Comprehension iteration:')
-print([str(a) + str(b) for a in A for b in B])
-
-# Generator concatenation
-print('Generator iteration:')
-gen = (str(a) + str(b) for a in A for b in B)
-print(list(gen))
-
-# Itertools Product concatenation
+# Imports
+from io import StringIO
 from itertools import product
-print('Itertools Product iteration:')
-prd = product(A, B)
-prd_lst = list(prd)
-temp1 = []
-for i in prd_lst:
-    temp2 = []
-    for j in list(i):
-        temp2.append(str(j))
-    temp1.append(''.join(temp2)) 
-print(temp1)
 
+# Simulate input from HackerRank
+raw_data = '''1 2
+3 4'''
+# Expected Output
+# (1, 3) (1, 4) (2, 3) (2, 4)
 
-C = [[1,2,3],[3,4,5]]
-print('C:', C)
-print('*C:', *C)
-print(list(product(*C)))
+# Data
+input = StringIO(raw_data)
 
-# (x,y) for x in A for y in B)
-# product(A, B) returns the same as (
+# Solution
+def cartesian_product(x, y):
+    lst = list(product(x, y))
+
+    for i in lst:
+        print(i, end=' ')
+
+# Main
+if __name__ == "__main__":
+    A = input.readline().split()
+    B = input.readline().split()
+    
+    A = [int(str(a).strip()) for a in A]
+    B = [int(str(b).strip()) for b in B]
+    
+    cartesian_product(A, B)
