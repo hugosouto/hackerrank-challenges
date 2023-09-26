@@ -32,25 +32,30 @@ input = StringIO(raw_data)
 # Solution
 def total_sales(total_amount, shoes, size, value):
     print(value)
-    if shoes[size] > 0:
-        total_amount += value
+    # if shoes[size] > 0:
+        # total_amount += value
     return shoes, total_amount
 
 # Main
 if __name__ == '__main__':
     X = int(input.readline().strip())
-    sizes = [int(i) for i in list(input.readline().split())]
-    print('Sizes:', sizes)
+    # sizes = [int(i) for i in list(input.readline().split())]
+    sizes = list(input.readline().split())
+    # print('Sizes:', sizes)
     N = int(input.readline().strip())
-
-    # print(X, N, shoes, sep='\n')
+    print('N:', N)
+    
     shoes = dict(Counter(sizes))
     print('Shoes:', shoes)
 
     total_amount = 0
+    orders = {}
     for i in range(N):
-        size, value = [int(i) for i in list(input.readline().split())]
-        print(size, value)
-        total_sales(total_amount, shoes, size, value)
-
-    print(total_amount)
+        # total_amount += 1
+        size, value = input.readline().split()
+        orders[str(size)] = int(value)
+        # orders.update({str(size): int(value)})
+        # print(size, value)
+        # total_sales(total_amount, shoes, size, value)
+        # print(size, value)
+        print(orders)
