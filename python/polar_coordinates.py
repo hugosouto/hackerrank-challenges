@@ -9,11 +9,12 @@ Problem: https://www.hackerrank.com/challenges/polar-coordinates/problem
 '''
 
 # Imports
+import re
 from io import StringIO
 from cmath import phase
 
 # Simulate input from HackerRank
-raw_data = '  1+2j'
+raw_data = '1+2j'
     # Expected Output:
     #  2.23606797749979 
     #  1.1071487177940904
@@ -22,6 +23,11 @@ raw_data = '-1-5j'
     # Expected Output
     # 5.09901951359
     # -1.76819188664
+
+raw_data = '-80+25j'
+    # Expected Output
+    # 83.8152730712
+    # 2.83870778521
 
 # Data
 input = StringIO(raw_data)
@@ -34,8 +40,10 @@ def polar_coordinates(x, y):
 
 # Main
 if __name__ == '__main__':
-    x, y = input.readline().split('1')
-    y, j = y.split('')
+    str = input.readline()
+    
+    regex_exp = "[+-]*\\d+"
+    x, y = re.findall(regex_exp, str)
     x, y = int(x), int(y)
 
     polar_coordinates(x, y)
