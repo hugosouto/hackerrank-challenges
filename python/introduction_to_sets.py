@@ -22,9 +22,15 @@ raw_data = '''10
 input = StringIO(raw_data)
 
 # Function
-def function(args):
-    return
+def average(array):
+    distinct_heights = set(array)
+    n_distinct_heights = len(distinct_heights)
+    result = sum(distinct_heights)/n_distinct_heights
+    return result
 
 # Main
 if __name__ == '__main__':
-    input = input.readline()
+    n = int(input.readline())
+    arr = list(map(int, input.readline().split()))
+    result = average(arr)
+    print(result)
