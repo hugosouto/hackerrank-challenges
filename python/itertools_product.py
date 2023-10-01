@@ -30,10 +30,7 @@ def cartesian_product(x, y):
 
 # Main
 if __name__ == "__main__":
-    A = input.readline().split()
-    B = input.readline().split()
-    
-    A = [int(str(a).strip()) for a in A]
-    B = [int(str(b).strip()) for b in B]
-    
+    A = list(map(int, input.readline().split()))
+    B = list(map(int, input.readline().split()))
+
     cartesian_product(A, B)
