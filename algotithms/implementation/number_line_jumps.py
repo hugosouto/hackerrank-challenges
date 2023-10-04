@@ -34,11 +34,40 @@ raw_data = '''0 2 5 3'''
     # Expected Output:
     # NO
 
+# raw_data = '''21 6 47 3'''
+    # Expected Output:
+    # NO
+
 # Data
 input = StringIO(raw_data)
 
 # Function
 def kangaroo(x1, v1, x2, v2):
+    
+    n = 1
+    x_diff = max(x1, x2) - min(x1, x2)
+
+    if (x1 > x2 and v1 >= v2) or (x1 < x2 and v1 <= v2):
+        result = 'NO'
+
+    else:
+        for i in range(n):
+            if x1 - x2 > 0:
+                while x_diff + (v1 * i) > v2 * i:
+                    if x_diff + (v1 * i) == v2 * i:
+                        result = 'YES'
+                    else:
+                        result = 'NO'
+                    i += 1
+            else:
+                while x_diff + (v2 * i) > v1 * i:
+                    if x_diff + (v2 * i) == v1 * i:
+                        result = 'YES'
+                    else:
+                        result = 'NO'
+                    i += 1
+        result = 'YES'
+
     return result
 
 if __name__ == '__main__':
