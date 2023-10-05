@@ -38,20 +38,31 @@ raw_data = '''0 2 5 3'''
     # Expected Output:
     # NO
 
+raw_data = '''9 3 0 6'''
+    # Expected Output:
+    # NO
+
 # Data
 input = StringIO(raw_data)
 
 # Function
 def kangaroo(x1, v1, x2, v2):
 
+    i = 1
+    result = 'NO'
+
     if x1 == x2 and v1 == v2:
         result = 'YES'
     elif x1 > x2 and v1 < v2:
-        result = 'MAYBE'
+        while x1 + (v1 * i) >= x2 + (v2 * i):
+            if x1 + (v1 * i) == x2 + (v2 * i):
+                result = 'YES'
+            i += 1
     elif x1 < x2 and v1 > v2:
-        result = 'MAYBE'
-    else:
-        result = 'NO'
+        while x1 + (v1 * i) <= x2 + (v2 * i):
+            if x1 + (v1 * i) == x2 + (v2 * i):
+                result = 'YES'
+            i += 1
 
     return result
 
