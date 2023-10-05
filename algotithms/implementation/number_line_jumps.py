@@ -43,30 +43,15 @@ input = StringIO(raw_data)
 
 # Function
 def kangaroo(x1, v1, x2, v2):
-    
-    n = 1
-    x_diff = max(x1, x2) - min(x1, x2)
 
-    if (x1 > x2 and v1 >= v2) or (x1 < x2 and v1 <= v2):
-        result = 'NO'
-
-    else:
-        for i in range(n):
-            if x1 - x2 > 0:
-                while x_diff + (v1 * i) > v2 * i:
-                    if x_diff + (v1 * i) == v2 * i:
-                        result = 'YES'
-                    else:
-                        result = 'NO'
-                    i += 1
-            else:
-                while x_diff + (v2 * i) > v1 * i:
-                    if x_diff + (v2 * i) == v1 * i:
-                        result = 'YES'
-                    else:
-                        result = 'NO'
-                    i += 1
+    if x1 == x2 and v1 == v2:
         result = 'YES'
+    elif x1 > x2 and v1 < v2:
+        result = 'MAYBE'
+    elif x1 < x2 and v1 > v2:
+        result = 'MAYBE'
+    else:
+        result = 'NO'
 
     return result
 
@@ -85,6 +70,8 @@ if __name__ == '__main__':
     v2 = int(first_multiple_input[3])
 
     result = kangaroo(x1, v1, x2, v2)
+    
+    print(result)
 
     fptr.write(result + '\n')
 
