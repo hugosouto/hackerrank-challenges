@@ -40,7 +40,7 @@ raw_data = '''0 2 5 3'''
 
 raw_data = '''9 3 0 6'''
     # Expected Output:
-    # NO
+    # YES
 
 # Data
 input = StringIO(raw_data)
