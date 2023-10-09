@@ -40,24 +40,24 @@ input = StringIO(raw_data)
 def getTotalX(a, b):
     '''
     Given two lists of integers, a and b, find the number of integers 
-    that satisfy certain criteria relative to the two sets.
+    that satisfy a criteria relative to the two sets.
     '''
 
     max_a = max(a)
     min_b = min(b)
 
     # Original code
-    # rng = range(max_a, min_b + 1)
-    # condition_1, condition_2 = [], []
-    # for number in rng:
-    #     if all(number % item == 0 for item in a):
-    #         condition_1.append(number)
-    # 
-    # for number in condition_1:
-    #     if all(item % number == 0 for item in b):
-    #         condition_2.append(number)
-    # 
-    # total = len(condition_2)
+        # rng = range(max_a, min_b + 1)
+        # condition_1, condition_2 = [], []
+        # for number in rng:
+        #     if all(number % item == 0 for item in a):
+        #         condition_1.append(number)
+        # 
+        # for number in condition_1:
+        #     if all(item % number == 0 for item in b):
+        #         condition_2.append(number)
+        # 
+        # total = len(condition_2)
 
     # ChatGPT Assisted Refactoring
     numbers_meeting_criteria = [number for number in range(max_a, min_b + 1) 
