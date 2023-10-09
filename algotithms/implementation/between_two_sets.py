@@ -26,11 +26,34 @@ raw_data = '''2 3
     # Expected Output:
     # 3
 
+raw_data = '''2 2
+3 4
+24 48
+'''
+    # Expected Output:
+    # 2
+
 # Data
 input = StringIO(raw_data)
 
 # Function
 def getTotalX(a, b):
+    
+    max_a = max(a)
+    min_b = min(b)
+    
+    rng = range(max_a, min_b + 1)
+    condition_1, condition_2 = [], []
+    for number in rng:
+        if all(number % item == 0 for item in a):
+            condition_1.append(number)
+    
+    for number in condition_1:
+        if all(item % number == 0 for item in b):
+            condition_2.append(number)
+    
+    total = len(condition_2)
+
     return total
 
 # Main
