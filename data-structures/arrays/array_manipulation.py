@@ -33,6 +33,13 @@ input = StringIO(raw_data)
 
 # Function
 def arrayManipulation(n, queries):
+    arr = [0 for _ in range(n)]
+
+    for q in queries:
+        for i in range(q[0]-1, q[1]):
+            arr[i] += q[2]
+
+    result = max(arr)
     return result
 
 # Main
