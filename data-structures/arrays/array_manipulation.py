@@ -33,14 +33,54 @@ input = StringIO(raw_data)
 
 # Function
 def arrayManipulation(n, queries):
-    arr = [0 for _ in range(n)]
+    '''
+    Perform `n` operations on an array and return the maximum of the values.
+    '''
+    print(n, queries)
+    
+    arr = [0] * n
+    # arr = [0 for _ in range(n)]
+    # arr = [10, 20,  30, 40, 50]
+    print('arr:', arr)
+    
+    for q in range(len(queries)):
+        print('\nquery:', queries[q])
+        slice = arr[queries[q][0]-1:queries[q][1]]
+        print('slice:', slice)
+        add = queries[q][2]
 
-    for q in queries:
-        for i in range(q[0]-1, q[1]):
-            arr[i] += q[2]
+        # print('slice 1:', slice)
+        print('add:', add)
+        arr[queries[q][0]-1:queries[q][1]] = [e + add for e in slice]
+        print('arr:', arr)
+
+        # for i in arr[queries[q][0]:queries[q][2]]:
+            # slice += queries[q][2]
+
+
+        # print(arr[queries[q][0]:queries[q][2]])
+        # print(queries[q][2])
+
+        # for i in range(2):
+            # print('i:', i)
+            # print(queries[q][i]) # += queries[q][2]
+            # print(arr)
 
     result = max(arr)
     return result
+
+    # print(n, queries)
+    
+    # arr = [0 for _ in range(n)]
+    # print(arr)
+    
+    # for q in queries:
+    #     for i in range(q[0]-1, q[1]):
+    #         arr[i] += q[2]
+    #         print(arr)
+
+    # result = max(arr)
+    # return result
 
 # Main
 if __name__ == '__main__':
