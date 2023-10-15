@@ -17,6 +17,7 @@ import random
 import re
 import sys
 import tempfile
+import time
 from io import StringIO
 
 # Simulate input from HackerRank
@@ -28,59 +29,55 @@ raw_data = '''5 3
     # Expected Output:
     # 200
 
+# Import txt file as string
+raw_data = open('C:\\Users\\Hugo\\GitHub\\hackerrank-challenges\\data-structures\\arrays\\array_manipulation_test_case_6.txt', 'r')
+    # Expected Output:
+    # 7515267971
+
 # Data
-input = StringIO(raw_data)
+input_str = raw_data.read()
+input = StringIO(input_str)
 
 # Function
 def arrayManipulation(n, queries):
     '''
     Perform `n` operations on an array and return the maximum of the values.
     '''
-    print(n, queries)
     
-    arr = [0] * n
+    # Version 1
     # arr = [0 for _ in range(n)]
-    # arr = [10, 20,  30, 40, 50]
-    print('arr:', arr)
-    
-    for q in range(len(queries)):
-        print('\nquery:', queries[q])
-        slice = arr[queries[q][0]-1:queries[q][1]]
-        print('slice:', slice)
-        add = queries[q][2]
-
-        # print('slice 1:', slice)
-        print('add:', add)
-        arr[queries[q][0]-1:queries[q][1]] = [e + add for e in slice]
-        print('arr:', arr)
-
-        # for i in arr[queries[q][0]:queries[q][2]]:
-            # slice += queries[q][2]
-
-
-        # print(arr[queries[q][0]:queries[q][2]])
-        # print(queries[q][2])
-
-        # for i in range(2):
-            # print('i:', i)
-            # print(queries[q][i]) # += queries[q][2]
-            # print(arr)
-
-    result = max(arr)
-    return result
-
-    # print(n, queries)
-    
-    # arr = [0 for _ in range(n)]
-    # print(arr)
-    
     # for q in queries:
     #     for i in range(q[0]-1, q[1]):
     #         arr[i] += q[2]
-    #         print(arr)
+    #         # print(arr)
 
-    # result = max(arr)
-    # return result
+    # Version 2
+    # arr = [0] * n
+    # for q in range(len(queries)):
+    #     slice = arr[queries[q][0]-1:queries[q][1]]
+    #     add = queries[q][2]
+    #     arr[queries[q][0]-1:queries[q][1]] = [i + add for i in slice]
+    
+    # Version 3
+    arr = [0] * n
+    for q in range(len(queries)):
+        slice = arr[queries[q][0]-1:queries[q][1]]
+        add = queries[q][2]
+        arr[queries[q][0]-1:queries[q][1]] = map(lambda x: x + add, slice)
+
+    # Version Extra (with NumPy)
+    # import numpy as np
+    # arr = np.zeros(n, dtype=int)
+    # # arr = [1, 2, 3, 4, 5]
+    # # print(arr)
+    # for q in range(len(queries)):
+    #     slice = arr[queries[q][0]-1:queries[q][1]]
+    #     number_to_add = queries[q][2]
+    #     # print(np.array(arr[queries[q][0]-1:queries[q][1]]).sum())
+    #     arr[queries[q][0]-1:queries[q][1]] = list(map(lambda x: x + number_to_add, slice))
+        
+    result = max(arr)
+    return result
 
 # Main
 if __name__ == '__main__':
