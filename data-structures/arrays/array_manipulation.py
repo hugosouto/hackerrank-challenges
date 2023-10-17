@@ -21,11 +21,11 @@ import time
 from io import StringIO
 
 # Simulate input from HackerRank
-raw_data = '''5 3
-1 2 100
-2 5 100
-3 4 100
-'''
+# raw_data = '''5 3
+# 1 2 100
+# 2 5 100
+# 3 4 100
+# '''
     # Expected Output:
     # 200
 
@@ -39,6 +39,13 @@ input_str = raw_data.read()
 input = StringIO(input_str)
 
 # Function
+def recAddQuery(iteration, n, arr, query, interval, num_to_add):
+        if iteration == 0:
+            return arr
+        else:
+            arr[queries[query][0]-1:queries[query][1]] = map(lambda x: x + num_to_add, interval)
+        return recAddQuery(iteration, n, arr, query, interval, num_to_add)
+
 def arrayManipulation(n, queries):
     '''
     Perform `n` operations on an array and return the maximum of the values.
@@ -59,11 +66,21 @@ def arrayManipulation(n, queries):
     #     arr[queries[q][0]-1:queries[q][1]] = [i + add for i in slice]
     
     # Version 3
+    # arr = [0] * n
+    # for q in range(len(queries)):
+        # slice = arr[queries[q][0]-1:queries[q][1]]
+        # add = queries[q][2]
+        # arr[queries[q][0]-1:queries[q][1]] = map(lambda x: x + add, slice)
+
+    # Version 4 - Recursive Function
+        
     arr = [0] * n
-    for q in range(len(queries)):
-        slice = arr[queries[q][0]-1:queries[q][1]]
-        add = queries[q][2]
-        arr[queries[q][0]-1:queries[q][1]] = map(lambda x: x + add, slice)
+    query = 0
+    interval = arr[queries[query][0]-1:queries[query][1]]
+    num_to_add = queries[query][2]
+    iteration = n
+
+    recAddQuery(iteration, n, arr, query, interval, num_to_add)
 
     # Version Extra (with NumPy)
     # import numpy as np
