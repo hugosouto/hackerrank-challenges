@@ -47,7 +47,7 @@ def recAddQuery(remaining, query, arr):
     else:
         num_to_add = queries[query][2]
         slice = arr[queries[query][0]-1:queries[query][1]]
-        arr[queries[query][0]-1:queries[query][1]] = [i + num_to_add for i in slice]
+        arr[queries[query][0]-1:queries[query][1]] = (i + num_to_add for i in slice)
     return recAddQuery(remaining-1, query+1, arr)
 
 def arrayManipulation(n, queries):
@@ -87,12 +87,10 @@ def arrayManipulation(n, queries):
     #     # print(np.array(arr[queries[q][0]-1:queries[q][1]]).sum())
     #     arr[queries[q][0]-1:queries[q][1]] = list(map(lambda x: x + number_to_add, slice))
     
-    # Version 4 - Recursive Function
-        
+    # Version 4 (Recursive Function)
     arr = [0] * n
     query = 0
     remaining = len(queries) - query
-
     recAddQuery(remaining, query, arr)
         
     result = max(arr)
