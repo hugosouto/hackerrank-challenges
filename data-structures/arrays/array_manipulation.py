@@ -33,7 +33,7 @@ raw_data = '''5 3
 raw_data = open('C:\\Users\\Hugo\\GitHub\\hackerrank-challenges\\data-structures\\arrays\\array_manipulation_test_case_3.txt', 'r').read()
     # Expected Output:
     # 6314
-# raw_data = open('C:\\Users\\Hugo\\GitHub\\hackerrank-challenges\\data-structures\\arrays\\array_manipulation_test_case_6.txt', 'r').read()
+raw_data = open('C:\\Users\\Hugo\\GitHub\\hackerrank-challenges\\data-structures\\arrays\\array_manipulation_test_case_6.txt', 'r').read()
     # Expected Output:
     # 7515267971
 
@@ -41,14 +41,14 @@ raw_data = open('C:\\Users\\Hugo\\GitHub\\hackerrank-challenges\\data-structures
 input = StringIO(raw_data)
 
 # Function
-def recAddQuery(remaining, query, arr):
-    if remaining == 0:
-        return arr
-    else:
-        num_to_add = queries[query][2]
-        slice = arr[queries[query][0]-1:queries[query][1]]
-        arr[queries[query][0]-1:queries[query][1]] = (i + num_to_add for i in slice)
-    return recAddQuery(remaining-1, query+1, arr)
+# def recAddQuery(remaining, query, arr):
+#     if remaining == 0:
+#         return arr
+#     else:
+#         num_to_add = queries[query][2]
+#         slice = arr[queries[query][0]-1:queries[query][1]]
+#         arr[queries[query][0]-1:queries[query][1]] = (i + num_to_add for i in slice)
+#     return recAddQuery(remaining-1, query+1, arr)
 
 def arrayManipulation(n, queries):
     '''
@@ -87,12 +87,18 @@ def arrayManipulation(n, queries):
     #     # print(np.array(arr[queries[q][0]-1:queries[q][1]]).sum())
     #     arr[queries[q][0]-1:queries[q][1]] = list(map(lambda x: x + number_to_add, slice))
     
-    # Version 4 (Recursive Function)
+    # Version 4 (with Recursive Function)
+    # arr = [0] * n
+    # query = 0
+    # remaining = len(queries) - query
+    # recAddQuery(remaining, query, arr)
+
+    # Version 5 (ChatGPT-assisted)
     arr = [0] * n
-    query = 0
-    remaining = len(queries) - query
-    recAddQuery(remaining, query, arr)
-        
+    for query in queries:
+        a, b, k = query
+        arr[a-1:b] = [i + k for i in arr[a-1:b]]
+    
     result = max(arr)
     return result
 
