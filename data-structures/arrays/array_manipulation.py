@@ -93,21 +93,27 @@ def arrayManipulation(n, queries):
     # remaining = len(queries) - query
     # recAddQuery(remaining, query, arr)
 
-    # Version 5 (ChatGPT-assisted)
+    # Version 5 (ChatGPT-based)
     # arr = [0] * n
     # for query in queries:
     #     a, b, k = query
     #     arr[a-1:b] = [i + k for i in arr[a-1:b]]
     
-    # Version 6 (ChatGPT-assisted)
+    # Version 6 (ChatGPT-based)
+    # arr = [0] * n
+    # for query in queries:
+    #     a, b, k = query
+    #     for i in range(a-1, b):
+    #         arr[i] += k
+
+    # Version 7 (ChatGPT-based)
     arr = [0] * n
     for query in queries:
         a, b, k = query
-        for i in range(a-1, b):
-            arr[i] += k
+        for x in range(b-(a-1)):
+            arr[(a-1) + x] += k
 
     return max(arr)
-
 
 # Main
 if __name__ == '__main__':
