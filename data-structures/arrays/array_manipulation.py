@@ -21,30 +21,34 @@ import time
 from io import StringIO
 
 # Simulate input from HackerRank
-# raw_data = '''5 3
-# 1 2 100
-# 2 5 100
-# 3 4 100
-# '''
+raw_data = '''5 3
+1 2 100
+2 5 100
+3 4 100
+'''
     # Expected Output:
     # 200
 
-# Import txt file as string
-raw_data = open('C:\\Users\\Hugo\\GitHub\\hackerrank-challenges\\data-structures\\arrays\\array_manipulation_test_case_6.txt', 'r')
+# Import txt files as string
+raw_data = open('C:\\Users\\Hugo\\GitHub\\hackerrank-challenges\\data-structures\\arrays\\array_manipulation_test_case_3.txt', 'r').read()
+    # Expected Output:
+    # 6314
+# raw_data = open('C:\\Users\\Hugo\\GitHub\\hackerrank-challenges\\data-structures\\arrays\\array_manipulation_test_case_6.txt', 'r').read()
     # Expected Output:
     # 7515267971
 
 # Data
-input_str = raw_data.read()
-input = StringIO(input_str)
+input = StringIO(raw_data)
 
 # Function
-def recAddQuery(iteration, n, arr, query, interval, num_to_add):
-        if iteration == 0:
-            return arr
-        else:
-            arr[queries[query][0]-1:queries[query][1]] = map(lambda x: x + num_to_add, interval)
-        return recAddQuery(iteration, n, arr, query, interval, num_to_add)
+def recAddQuery(remaining, query, arr):
+    if remaining == 0:
+        return arr
+    else:
+        num_to_add = queries[query][2]
+        slice = arr[queries[query][0]-1:queries[query][1]]
+        arr[queries[query][0]-1:queries[query][1]] = [i + num_to_add for i in slice]
+    return recAddQuery(remaining-1, query+1, arr)
 
 def arrayManipulation(n, queries):
     '''
@@ -72,16 +76,6 @@ def arrayManipulation(n, queries):
         # add = queries[q][2]
         # arr[queries[q][0]-1:queries[q][1]] = map(lambda x: x + add, slice)
 
-    # Version 4 - Recursive Function
-        
-    arr = [0] * n
-    query = 0
-    interval = arr[queries[query][0]-1:queries[query][1]]
-    num_to_add = queries[query][2]
-    iteration = n
-
-    recAddQuery(iteration, n, arr, query, interval, num_to_add)
-
     # Version Extra (with NumPy)
     # import numpy as np
     # arr = np.zeros(n, dtype=int)
@@ -92,6 +86,14 @@ def arrayManipulation(n, queries):
     #     number_to_add = queries[q][2]
     #     # print(np.array(arr[queries[q][0]-1:queries[q][1]]).sum())
     #     arr[queries[q][0]-1:queries[q][1]] = list(map(lambda x: x + number_to_add, slice))
+    
+    # Version 4 - Recursive Function
+        
+    arr = [0] * n
+    query = 0
+    remaining = len(queries) - query
+
+    recAddQuery(remaining, query, arr)
         
     result = max(arr)
     return result
