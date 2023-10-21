@@ -32,12 +32,13 @@ input = StringIO(raw_data)
 
 # Function
 def findPoint(px, py, qx, qy):
-    result = 'teucu'
-    return result
+    rx = qx-px + qx-px + px
+    ry = qy-py + qy-py + py
+    return [rx, ry]
 
 # Main
 if __name__ == '__main__':
-    fptr = tempfile.NamedTemporaryFile(mode='w')
+    fptr = tempfile.NamedTemporaryFile(mode='w+',)
     
     n = int(input.readline().strip())
 
@@ -53,9 +54,9 @@ if __name__ == '__main__':
         qy = int(first_multiple_input[3])
 
         result = findPoint(px, py, qx, qy)
-        print(result)
+        print(' '.join(map(str, result)))
 
         fptr.write(' '.join(map(str, result)))
         fptr.write('\n')
-
+        
     fptr.close()
