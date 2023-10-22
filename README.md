@@ -3,14 +3,14 @@
 ![HackerRank Logo](https://www.hackerrank.com/wp-content/uploads/2018/08/hackerrank_logo.png)
 
 This repository provides original solutions for various challenges in the
-domains of Python, Algorithms, Data Structures, and Artificial Intelligence
-from the HackerRank platform.
+domains of Python, Algorithms, Data Structures, Mathematics, and Artificial
+Intelligence from the HackerRank platform.
 
 ## Introduction
 
 This repository is a valuable resource for those preparing for technical
 interviews, seeking to improve their problem-solving skills, or delving into
-various domains such as Artificial Intelligence, Data Structures, and more.
+various domains such as Python, Algorithms Data Structures, and more.
 
 ## Declaration of Originality
 
