@@ -16,10 +16,11 @@ The solutions were originally developed by
 [www.github.com/hugosouto](https://www.github.com/hugosouto)
 Hugo Souto without any direct AI assistance (GitHub Copilot, OpenAI
 ChatGPT/GPT, Google Bard, Anthropic Claude, or others), unless strictly
-declared. IntelliCode-like tools, programming language references, books, or
-generic web content may have been used. Solutions based on others solutions or
-AI improved codes are added with the suffix "community" or "alternative" in the
-filename respectively.
+declared in non-essential parts of solution logic. IntelliCode-like tools,
+programming language references, books, or generic web content may have been
+used. Solutions based on others solutions or contributions, or AI improved
+code are added with the suffix "community" or "alternative" in the filename
+respectively.
 
 The aim is to provide clear and efficient solutions with full explanations for
 better understanding. For this, I tried to insert the data provided by
@@ -71,5 +72,5 @@ and submit a pull request.
 ## License
 
 This project is licensed under the GNU General Public License v3.0. See the
-[LICENSE](LICENSE) file for details. This project
-is not affiliated with HackerRank.
+[LICENSE](LICENSE) file for details. This project is not affiliated with
+HackerRank.
