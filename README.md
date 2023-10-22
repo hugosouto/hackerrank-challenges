@@ -76,3 +76,7 @@ and submit a pull request.
 This project is licensed under the GNU General Public License v3.0. See the
 [LICENSE](LICENSE) file for details. This project is not affiliated with
 HackerRank.
+
+## Author Activity
+
+[![GitHub Streak](https://streak-stats.demolab.com?user=hugosouto&theme=whatsapp-dark&hide_border=true)](https://git.io/streak-stats)
