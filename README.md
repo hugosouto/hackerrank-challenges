@@ -1,5 +1,11 @@
 # HackerRank Solutions Repository
 
+<p>
+    <div style="background-color: white; width: 100%">
+        <img src="https://www.hackerrank.com/wp-content/uploads/2018/08/hackerrank_logo.png" alt="HackerRank Banner" style="display: block; padding: 40px; margin: 0 auto;">
+    </div>
+</p>
+
 This repository provides original solutions for various challenges in the
 domains of Python, Algorithms, Data Structures, and Artificial Intelligence
 from the HackerRank platform.
