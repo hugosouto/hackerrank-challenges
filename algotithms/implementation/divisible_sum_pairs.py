@@ -18,6 +18,12 @@ import tempfile
 from io import StringIO
 
 # Simulate input from HackerRank
+# raw_data = '''6 5
+# 1 2 3 4 5 6
+# '''
+    # Expected Output:
+    # 3
+
 raw_data = '''6 3
 1 3 2 6 1 2
 '''
@@ -29,7 +35,24 @@ input = StringIO(raw_data)
 
 # Function
 def divisibleSumPairs(n, k, ar):
-    return result
+    """
+    Returns the number of pairs of integers in the list 'ar' whose sum is divisible by 'k'.
+
+    Args:
+    n (int): The length of the list 'ar'.
+    k (int): The integer to divide the pair sum by.
+    ar (list): A list of integers.
+
+    Returns:
+    int: The number of pairs of integers in the list 'ar' whose sum is divisible by 'k'.
+    """
+    pairs = 0
+    for i in range(n):
+        for j in range(n):
+            if i < j and (ar[i] + ar[j]) % k == 0:
+                pairs += 1
+
+    return pairs
 
 # Main
 if __name__ == '__main__':
