@@ -18,23 +18,34 @@ import tempfile
 from io import StringIO
 
 # Simulate input from HackerRank
-raw_data = '''6
-1 4 4 4 5 3
-'''
-    # Expected Output:
-    # 4
-
-# raw_data = '''11
-# 1 2 3 4 5 4 3 2 1 3 4
+# raw_data = '''6
+# 1 4 4 4 5 3
 # '''
 #     # Expected Output:
-#     # 3
+#     # 4
+
+raw_data = '''11
+1 2 3 4 5 4 3 2 1 3 4
+'''
+    # Expected Output:
+    # 3
 
 # Data
 input = StringIO(raw_data)
 
 # Function
 def migratoryBirds(arr):
+    print(arr)
+    count = dict.fromkeys([1,2,3,4,5], 0)
+        # Alternative for: count = {1:0, 2:0, 3:0, 4:0, 5:0}
+    print(count)
+    for x in arr:
+        if x in count:
+            count[x] += 1
+            print(count)
+    print(list(count.items()))
+    print(list(count.items())[max(count.values())])
+    result = list(count.items())[max(count.values())][0]
     return result
 
 # Main
