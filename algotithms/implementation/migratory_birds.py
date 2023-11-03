@@ -35,17 +35,29 @@ input = StringIO(raw_data)
 
 # Function
 def migratoryBirds(arr):
-    print(arr)
-    count = dict.fromkeys([1,2,3,4,5], 0)
-        # Alternative for: count = {1:0, 2:0, 3:0, 4:0, 5:0}
-    print(count)
+    '''
+    Given an array of bird sightings where every element represents a bird type
+    id, determine the id of the most frequently sighted type. If more than 1
+    type has been spottedthat maximum amount, return the smallest of their ids.
+
+    Args:
+    arr (list): A list of integers representing bird sightings.
+
+    Returns:
+    int: The id of the most frequently sighted bird type.
+    '''
+    count = dict.fromkeys(list(range(1,6)), 0)
+        # Alternative from: count = {1:0, 2:0, 3:0, 4:0, 5:0}
     for x in arr:
         if x in count:
             count[x] += 1
-            print(count)
-    print(list(count.items()))
-    print(list(count.items())[max(count.values())])
-    result = list(count.items())[max(count.values())][0]
+    count_list = list(count.items())
+    
+    for x in count_list:
+        if x[1] == max(count.values()):
+            result = x[0]
+            break
+
     return result
 
 # Main
