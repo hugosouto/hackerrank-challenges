@@ -53,6 +53,7 @@ def migratoryBirds(arr):
             count[x] += 1
     count_list = list(count.items())
     
+    result = None
     for x in count_list:
         if x[1] == max(count.values()):
             result = x[0]
