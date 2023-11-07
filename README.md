@@ -20,9 +20,9 @@ Hugo Souto without any direct AI assistance (GitHub Copilot, OpenAI
 ChatGPT/GPT, Google Bard, Anthropic Claude, or others), unless strictly
 declared in non-essential parts of solution logic. IntelliCode-like tools,
 programming language references, books, or generic web content may have been
-used. Solutions based on others solutions or contributions, or AI improved
-code are added with the suffix "community" or "alternative" in the filename
-respectively.
+used. Solutions based on others' solutions or contributions, or AI improved
+code, are added with the suffix "editorial", "community" or "alternative" in
+the filename respectively.
 
 The aim is to provide clear and efficient solutions with full explanations for
 better understanding. For this, I tried to insert the data provided by
