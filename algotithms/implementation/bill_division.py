@@ -25,10 +25,10 @@ raw_data = '''4 1
     # Expected Output:
     # 5
 
-raw_data = '''4 1
-3 10 2 9
-7
-'''
+# raw_data = '''4 1
+# 3 10 2 9
+# 7
+# '''
     # Expected Output:
     # Bon Appetit
 
@@ -37,8 +37,25 @@ input = StringIO(raw_data)
 
 # Function
 def bonAppetit(bill, k, b):
-    result = ''
-    return result
+    """
+    Calculates the amount of money that Anna owes Brian or vice versa after splitting the bill.
+
+    Parameters:
+    bill (list): A list of integers representing the cost of each item ordered.
+    k (int): An integer representing the zero-based index of the item Anna doesn't eat.
+    b (int): An integer representing the amount of money that Anna contributed to the bill.
+
+    Returns:
+    None: The function prints either the amount of money that Anna owes Brian or 'Bon Appetit' if they split the bill evenly.
+    """
+    anna = sum([sum(bill[:k]), sum(bill[k+1:])])/2
+
+    if b == anna:
+        result = 'Bon Appetit'
+    else:
+        result = int(b-anna)
+        
+    return print(result)
 
 # Main
 if __name__ == '__main__':
