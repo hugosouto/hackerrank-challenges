@@ -11,22 +11,31 @@ Problem: https://www.hackerrank.com/challenges/saveprincess
 from io import StringIO
 
 # Simulate input from HackerRank
-raw_data = ('''3
----
--m-
-p--
-''')
+# raw_data = ('''3
+# ---
+# -m-
+# p--
+# ''')
     # Expected Output
     # DOWN
     # LEFT
 
-raw_data = ('''5
------
------
---m--
------
-----p
+raw_data = ('''3
+--p
+-m-
+---
 ''')
+    # Expected Output
+    # UP
+    # RIGHT
+
+# raw_data = ('''5
+# -----
+# -----
+# --m--
+# -----
+# ----p
+# ''')
     # Expected Output
     # RIGHT
     # RIGHT
@@ -38,94 +47,81 @@ input = StringIO(raw_data)
 
 # Function
 def displayPathtoPrincess(n, grid):
+    
     # Set start position at the center
     start_line, start_column = n//2, n//2
     
-    # Set current line and column
-    line, column = start_line, start_column
-    # Set initial position
-    position = grid[start_line][start_column]
-    # Walks to upper left
-    for _ in range(start_line):
-        line -= 1
-        position = grid[line][column]
-    for _ in range(start_column):
-        column -= 1
-        position = grid[line][column]
-    if position == 'p':
+    def SetToStart(n, grid, start_line=start_line, start_column=start_line):
+        # Set current line and column
         line, column = start_line, start_column
+        # Set initial position
         position = grid[start_line][start_column]
-        for _ in range(start_line):
-            line -= 1
-            print('UP')
-            position = grid[line][column]
-        for _ in range(start_column):
-            column -= 1
-            print('LEFT')
-            position = grid[line][column]
+        # Walks to upper left
+        return line, column, position
+    
+    # print(line, column, position)
 
-    line, column = start_line, start_column
-    position = grid[start_line][start_column]
-    # Walks to upper right
-    for _ in range(start_line):
-        line -= 1
-        position = grid[line][column]
-    for _ in range(start_column):
-        column += 1
-        position = grid[line][column]
-    if position == 'p':
-        line, column = start_line, start_column
-        position = grid[start_line][start_column]
-        for _ in range(start_line):
-            line -= 1
-            print('UP')
-            position = grid[line][column]
-        for _ in range(start_column):
-            column += 1
-            print('RIGHT')
-            position = grid[line][column]
+    # Set position on the center
+    line, column, position = SetToStart(n, grid)
 
-    line, column = start_line, start_column
-    position = grid[start_line][start_column]
-    # Walks to bottom left
-    for _ in range(start_line):
-        line += 1
-        position = grid[line][column]
-    for _ in range(start_column):
-        column -= 1
-        position = grid[line][column]
-    if position == 'p':
-        line, column = start_line, start_column
-        position = grid[start_line][start_column]
-        for _ in range(start_line):
-            line += 1
-            print('BOTTOM')
-            position = grid[line][column]
-        for _ in range(start_column):
-            column -= 1
-            print('LEFT')
-            position = grid[line][column]
-
-    line, column = start_line, start_column
-    position = grid[start_line][start_column]
     # Walks to bottom right
-    for _ in range(start_line):
-        line += 1
-        position = grid[line][column]
-    for _ in range(start_column):
-        column += 1
-        position = grid[line][column]
-    if position == 'p':
-        line, column = start_line, start_column
-        position = grid[start_line][start_column]
+    if position != 'p':
         for _ in range(start_line):
             line += 1
-            print('BOTTOM')
             position = grid[line][column]
         for _ in range(start_column):
             column += 1
-            print('RIGHT')
             position = grid[line][column]
+            # print(position)
+        if position == 'p':
+            for _ in range(n//2):
+                print('DOWN', 'RIGHT', sep='\n')
+    
+    # Set position on the center
+    line, column, position = SetToStart(n, grid)
+    
+    # Walks to bottom left
+    if position != 'p':
+        for _ in range(start_line):
+            line += 1
+            position = grid[line][column]
+        for _ in range(start_column):
+            column -= 1
+            position = grid[line][column]
+            # print(position)
+        if position == 'p':
+            for _ in range(n//2):
+                print('DOWN', 'LEFT', sep='\n')
+
+    # Set position on the center
+    line, column, position = SetToStart(n, grid)
+    
+    # Walks to up left
+    if position != 'p':
+        for _ in range(start_line):
+            line -= 1
+            position = grid[line][column]
+        for _ in range(start_column):
+            column -= 1
+            position = grid[line][column]
+        if position == 'p':
+            for _ in range(n//2):
+                print('UP', 'LEFT', sep='\n')
+
+    # Set position on the center
+    line, column, position = SetToStart(n, grid)
+    
+    # Walks to up right
+    if position != 'p':
+        for _ in range(start_line):
+            line -= 1
+            position = grid[line][column]
+        for _ in range(start_column):
+            column += 1
+            position = grid[line][column]
+        if position == 'p':
+            for _ in range(n//2):
+                print('UP', 'RIGHT', sep='\n')
 
 m = int(input.readline())
 grid = [] 
