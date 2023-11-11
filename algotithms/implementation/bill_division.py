@@ -48,7 +48,8 @@ def bonAppetit(bill, k, b):
     Returns:
     None: The function prints either the amount of money that Anna owes Brian or 'Bon Appetit' if they split the bill evenly.
     """
-    anna = sum([sum(bill[:k]), sum(bill[k+1:])])/2
+    # anna = sum([sum(bill[:k]), sum(bill[k+1:])])/2
+    anna = (sum(bill) - bill[k])/2
 
     if b == anna:
         result = 'Bon Appetit'
@@ -70,5 +71,3 @@ if __name__ == '__main__':
     b = int(input.readline().strip())
 
     bonAppetit(bill, k, b)
-
-    print(bonAppetit(bill, k, b))
