@@ -9,6 +9,7 @@ Problem: https://www.hackerrank.com/challenges/sock-merchant/problem
 '''
 
 # Imports
+import array
 import math
 import os
 import random
@@ -29,7 +30,22 @@ input = StringIO(raw_data)
 
 # Function
 def sockMerchant(n, ar):
-    result = ''
+    '''
+    Given an array of integers representing the color of each sock, 
+    determines how many pairs of socks with matching colors there are.
+
+    Args:
+    n (int): The number of socks in the pile.
+    ar (list): An array of integers representing the colors of each sock.
+
+    Returns:
+    int: The number of pairs of socks with matching colors.
+    '''
+    present_colors = set(ar)
+    pairs = 0
+    for color in present_colors:
+        pairs += ar.count(color)//2
+    result = pairs
     return result
 
 # Main
