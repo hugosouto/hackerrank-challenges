@@ -1,7 +1,14 @@
-#!/bin/python3
+'''
+Challenge: A Very Big Sum
+Difficulty: Easy
+Topic: Problem Solving (Basic)
+Max Score: 10
+Success Rate: 98.80%
+Task: Calculate and print the sum of an array, keeping in mind that some of those integers may be quite large.
+Problem: https://www.hackerrank.com/challenges/a-very-big-sum/problem
+'''
 
-# Imports the required libraries
-
+# Imports
 import math
 import os
 import random
@@ -10,15 +17,7 @@ import sys
 import tempfile
 from io import StringIO
 
-# About the challenge:
-# 
-# Complete the 'aVeryBigSum' function below.
-# The function is expected to return a LONG_INTEGER.
-# The function accepts LONG_INTEGER_ARRAY ar as parameter.
-
-
-# Artificial data to simulate HackerRank input
-
+# Simulate input from HackerRank
 def generate_data(length):
     data = []
     for _ in range(length):
@@ -30,16 +29,16 @@ def create_raw_data(length):
     raw = f"{length}\n{' '.join(str(num) for num in data)}"
     return raw
 
-raw = create_raw_data(random.randint(1, 11))
+raw_data = create_raw_data(random.randint(1, 11))
 
+# Data
+input = StringIO(raw_data)
 
-# Convert the string data to a file-like object
-
-input = StringIO(raw)
-
+# Function
 def aVeryBigSum(ar):
     return sum(ar)
 
+# Main
 if __name__ == '__main__':
     # Simulates the original 'fptr = open(os.environ['OUTPUT_PATH'], 'w')' command with a temporary file
     fptr = tempfile.NamedTemporaryFile(mode='w')
