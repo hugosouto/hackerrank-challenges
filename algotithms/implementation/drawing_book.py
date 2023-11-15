@@ -54,10 +54,10 @@ def pageCount(n, p):
     # Check if last page is even
     if n % 2 == 0:
         # If True, round up
-        result = min(int((p-0)/2), int(math.ceil((n-p)/2)))
+        result = min(p//2, (n+1-p)//2)
     else:
         # If False, no round
-        result = min(int((p-0)/2), int((n-p)/2))
+        result = min(p//2, (n-p)//2)
     return result
 
 # Main
