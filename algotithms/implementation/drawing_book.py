@@ -19,14 +19,20 @@ from io import StringIO
 
 # Simulate input from HackerRank
 raw_data = '''6
-2
+5
 '''
     # Expected Output:
     # 1
 
-raw_data = '''5
-4
-'''
+# raw_data = '''5
+# 4
+# '''
+    # Expected Output:
+    # 0
+
+# raw_data = '''5
+# 4
+# '''
     # Expected Output:
     # 0
 
@@ -35,6 +41,23 @@ input = StringIO(raw_data)
 
 # Function
 def pageCount(n, p):
+    '''
+    Returns the minimum number of page turns required to reach a given page number in a book.
+
+    Args:
+    - n (int): The total number of pages in the book.
+    - p (int): The page number to reach.
+
+    Returns:
+    - int: The minimum number of page turns required to reach the given page number.
+    '''
+    # Check if last page is even
+    if n % 2 == 0:
+        # If True, round up
+        result = min(int((p-0)/2), int(math.ceil((n-p)/2)))
+    else:
+        # If False, no round
+        result = min(int((p-0)/2), int((n-p)/2))
     return result
 
 # Main
@@ -51,4 +74,4 @@ if __name__ == '__main__':
 
     fptr.close()
 
-    # print(result)
+    print(result)
