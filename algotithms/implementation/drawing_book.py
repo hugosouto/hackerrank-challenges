@@ -58,6 +58,11 @@ def pageCount(n, p):
         result = min(p//2, (n-p)//2)
     return result
 
+    # Editorial version
+    # if not n%2:
+    #     n += 1
+    # return min(p//2, (n-p)//2)
+
 # Main
 if __name__ == '__main__':
     fptr = tempfile.NamedTemporaryFile(mode='w')
