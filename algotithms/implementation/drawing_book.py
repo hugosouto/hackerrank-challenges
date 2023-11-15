@@ -52,11 +52,9 @@ def pageCount(n, p):
     - int: The minimum number of page turns required to reach the given page number.
     '''
     # Check if last page is even
-    if n % 2 == 0:
-        # If True, round up
+    if n % 2:
         result = min(p//2, (n+1-p)//2)
     else:
-        # If False, no round
         result = min(p//2, (n-p)//2)
     return result
 
