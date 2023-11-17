@@ -36,7 +36,33 @@ input = StringIO(raw_data)
 
 # Function
 def countingValleys(steps, path):
-    return result
+    '''
+    Counts the number of valleys in a given path.
+
+    Parameters:
+    steps (int): The number of steps taken.
+    path (str): The path taken, consisting of 'U' for uphill and 'D' for downhill.
+
+    Returns:
+    int: The number of valleys encountered.
+    '''
+    log = []
+    level = 0
+    for step in path:
+        if step == 'U':
+            level += 1
+        if step == 'D':
+            level -= 1
+        if level < 0:
+            on_valley = '1'
+        else:
+            on_valley = '0'
+        log.append(on_valley)
+    
+    log_string = ''.join(log)
+    
+    valleys = len(re.findall('/*10/*', log_string))
+    return valleys
 
 # Main
 if __name__ == '__main__':
