@@ -31,7 +31,7 @@ input = StringIO(raw_data)
 
 # Function
 def catAndMouse(x, y, z):
-    """
+    '''
     Determines which cat will reach the mouse first or if the mouse will escape.
 
     Parameters:
@@ -41,7 +41,7 @@ def catAndMouse(x, y, z):
 
     Returns:
     str: The result indicating which cat will reach the mouse first or if the mouse will escape.
-    """
+    '''
     distance_A = abs(z-x)
     distance_B = abs(z-y)
 
