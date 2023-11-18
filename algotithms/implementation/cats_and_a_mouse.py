@@ -31,6 +31,25 @@ input = StringIO(raw_data)
 
 # Function
 def catAndMouse(x, y, z):
+    """
+    Determines which cat will reach the mouse first or if the mouse will escape.
+
+    Parameters:
+    x (int): The position of cat A.
+    y (int): The position of cat B.
+    z (int): The position of the mouse.
+
+    Returns:
+    str: The result indicating which cat will reach the mouse first or if the mouse will escape.
+    """
+    
+    if abs(z-x) < abs(z-y):
+        result = 'Cat A'
+    elif abs(z-x) > abs(z-y):
+        result = 'Cat B'
+    elif abs(z-x) == abs(z-y):
+        result = 'Mouse C'
+
     return result
 
 # Main
