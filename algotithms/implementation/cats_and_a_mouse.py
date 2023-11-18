@@ -42,12 +42,14 @@ def catAndMouse(x, y, z):
     Returns:
     str: The result indicating which cat will reach the mouse first or if the mouse will escape.
     """
-    
-    if abs(z-x) < abs(z-y):
+    distance_A = abs(z-x)
+    distance_B = abs(z-y)
+
+    if distance_A < distance_B:
         result = 'Cat A'
-    elif abs(z-x) > abs(z-y):
+    elif distance_A > distance_B:
         result = 'Cat B'
-    elif abs(z-x) == abs(z-y):
+    elif distance_A == distance_B:
         result = 'Mouse C'
 
     return result
