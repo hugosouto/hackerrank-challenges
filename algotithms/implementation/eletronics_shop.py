@@ -37,7 +37,30 @@ input = StringIO(raw_data)
 
 # Function
 def getMoneySpent(keyboards, drives, b):
+    '''
+    Calculates the maximum amount of money that can be spent on a keyboard and a USB drive,
+    given a budget 'b' and the prices of available keyboards and drives.
     
+    Parameters:
+    keyboards (list): A list of integers representing the prices of available keyboards.
+    drives (list): A list of integers representing the prices of available USB drives.
+    b (int): The budget for the purchase.
+    
+    Returns:
+    int: The maximum amount of money that can be spent, or -1 if it is not possible to buy both items within the budget.
+    '''
+    
+    totals = []
+    
+    for keyboard in keyboards:
+        for drive in drives:
+            if keyboard + drive <= b:
+                totals.append(keyboard + drive)
+    
+    if len(totals) == 0:
+        totals = [-1]
+
+    return max(totals)
 
 # Main
 if __name__ == '__main__':
