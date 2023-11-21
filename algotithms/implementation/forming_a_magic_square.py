@@ -58,13 +58,14 @@ input = StringIO(raw_data)
 def formingMagicSquare(s):
     
     original_matrix = s
+    print(original_matrix)
 
     magic_sum = sum(list(range(1,10)))
     print('Magic Matrix Sum:', magic_sum)
     matrix_sum = sum([sum(row) for row in s])
     print('Matrix Sum:      ', matrix_sum)
 
-    cost = 0
+    # cost = 0
     
     numbers_used = []
     for row in s:
@@ -79,7 +80,7 @@ def formingMagicSquare(s):
             max_index = row.index(max_value)
             row_cost = 15 - row_sum
             row[max_index] += row_cost
-            cost += row_cost
+            # cost += row_cost
             numbers_used += row
 
         if sum(row) > 15: # 15 is the Magic Number
@@ -93,13 +94,51 @@ def formingMagicSquare(s):
             max_index = row.index(max_value)
             row_cost = row_sum - 15
             row[max_index] -= row_cost
-            cost += row_cost
+            # cost += row_cost
             numbers_used += row
 
-    c = 0
-    for column in zip(*original_matrix):
-        print(f"Column {c}: {sum(column)}")
-        c += 1
+    print(s)
+    
+    numbers_used = []
+    for c in range(len(s[0])):
+        column = [row[c] for row in s]
+        if sum(column) < 15:
+            column_sum = sum(column)
+            sorted_column = sorted(column, reverse=True)
+            max_value = sorted_column[0]
+            if max_value in numbers_used:
+                max_value = sorted_column[1]
+                if max_value in numbers_used:
+                    max_value = sorted_column[2]
+            max_index = column.index(max_value)
+            column_cost = 15 - column_sum
+            column[max_index] += column_cost
+            # cost += column_cost
+            numbers_used += column
+
+        if sum(column) > 15: # 15 is the Magic Number
+            column_sum = sum(column)
+            sorted_column = sorted(column, reverse=True)
+            max_value = sorted_column[0]
+            if max_value in numbers_used:
+                max_value = sorted_column[1]
+                if max_value in numbers_used:
+                    max_value = sorted_column[2]
+            max_index = column.index(max_value)
+            column_cost = column_sum - 15
+            column[max_index] -= column_cost
+            # cost += column_cost
+            numbers_used += column
+    
+    print(s)
+
+    differences = []
+    for orig_sublist, s_sublist in zip(original_matrix, s):
+        differences.append([orig - s for orig, s in zip(orig_sublist, s_sublist)])
+
+    # print(differences)
+
+    cost = sum([sum(i) for i in differences])
 
     return cost
 
