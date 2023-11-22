@@ -27,27 +27,27 @@ raw_data = '''\
     # Expected Output:
     # 7
 
-# raw_data = '''\
-# 4 9 2
-# 3 5 7
-# 8 1 5
-# '''
+raw_data = '''\
+4 9 2
+3 5 7
+8 1 5
+'''
     # Expected Output:
     # 1
 
-# raw_data = '''\
-# 4 8 2
-# 4 5 7
-# 6 1 6
-# '''
+raw_data = '''\
+4 8 2
+4 5 7
+6 1 6
+'''
     # Expected Output:
     # 4
 
-# raw_data = '''\
-# 4 5 8
-# 2 4 1
-# 1 9 7
-# '''
+raw_data = '''\
+4 5 8
+2 4 1
+1 9 7
+'''
     # Expected Output:
     # 14
 
@@ -57,8 +57,7 @@ input = StringIO(raw_data)
 # Function
 def formingMagicSquare(s):
     
-    original_matrix = s
-    print(original_matrix)
+    original_matrix = [item[:] for item in s]
 
     magic_sum = sum(list(range(1,10)))
     print('Magic Matrix Sum:', magic_sum)
@@ -69,6 +68,7 @@ def formingMagicSquare(s):
     
     numbers_used = []
     for row in s:
+        print(sum(row))
         if sum(row) < 15: # 15 is the Magic Number
             row_sum = sum(row)
             sorted_row = sorted(row, reverse=True)
@@ -100,8 +100,9 @@ def formingMagicSquare(s):
     print(s)
     
     numbers_used = []
-    for c in range(len(s[0])):
+    for c in range(len(s[0])): # assuming its a square matrix
         column = [row[c] for row in s]
+        print(sum(column))
         if sum(column) < 15:
             column_sum = sum(column)
             sorted_column = sorted(column, reverse=True)
@@ -112,7 +113,7 @@ def formingMagicSquare(s):
                     max_value = sorted_column[2]
             max_index = column.index(max_value)
             column_cost = 15 - column_sum
-            column[max_index] += column_cost
+            s[max_index][c] += column_cost
             # cost += column_cost
             numbers_used += column
 
@@ -126,19 +127,21 @@ def formingMagicSquare(s):
                     max_value = sorted_column[2]
             max_index = column.index(max_value)
             column_cost = column_sum - 15
-            column[max_index] -= column_cost
+            s[max_index][c] -= column_cost
             # cost += column_cost
             numbers_used += column
     
-    print(s)
+    print('original_matrix', original_matrix)
+    print('s:', s)
 
     differences = []
-    for orig_sublist, s_sublist in zip(original_matrix, s):
-        differences.append([orig - s for orig, s in zip(orig_sublist, s_sublist)])
+    for original, final in zip(original_matrix, s):
+        print('o:', original, 'f', final)
+        differences.append([o - f for o, f in zip(original, final)])
 
-    # print(differences)
+    print(differences)
 
-    cost = sum([sum(i) for i in differences])
+    cost = abs(sum([sum(i) for i in differences]))
 
     return cost
 
