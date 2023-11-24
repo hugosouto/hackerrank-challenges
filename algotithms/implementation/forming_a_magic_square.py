@@ -13,9 +13,9 @@ import math
 import os
 import random
 import re
-from ssl import enum_certificates
 import sys
 import tempfile
+from itertools import permutations
 from io import StringIO
 
 # Simulate input from HackerRank
@@ -27,27 +27,27 @@ raw_data = '''\
     # Expected Output:
     # 7
 
-raw_data = '''\
-4 9 2
-3 5 7
-8 1 5
-'''
+# raw_data = '''\
+# 4 9 2
+# 3 5 7
+# 8 1 5
+# '''
     # Expected Output:
     # 1
 
-raw_data = '''\
-4 8 2
-4 5 7
-6 1 6
-'''
+# raw_data = '''\
+# 4 8 2
+# 4 5 7
+# 6 1 6
+# '''
     # Expected Output:
     # 4
 
-raw_data = '''\
-4 5 8
-2 4 1
-1 9 7
-'''
+# raw_data = '''\
+# 4 5 8
+# 2 4 1
+# 1 9 7
+# '''
     # Expected Output:
     # 14
 
@@ -56,99 +56,47 @@ input = StringIO(raw_data)
 
 # Function
 def formingMagicSquare(s):
-    
-    original_matrix = [item[:] for item in s]
 
-    magic_sum = sum(list(range(1,10)))
-    print('Magic Matrix Sum:', magic_sum)
-    matrix_sum = sum([sum(row) for row in s])
-    print('Matrix Sum:      ', matrix_sum)
+    print('s', s)
+    original_list = [i for sub in s for i in sub]
+    print('original_list', original_list)
 
-    # cost = 0
-    
-    numbers_used = []
-    for row in s:
-        print(sum(row))
-        if sum(row) < 15: # 15 is the Magic Number
-            row_sum = sum(row)
-            sorted_row = sorted(row, reverse=True)
-            max_value = sorted_row[0]
-            if max_value in numbers_used:
-                max_value = sorted_row[1]
-                if max_value in numbers_used:
-                    max_value = sorted_row[2]
-            max_index = row.index(max_value)
-            row_cost = 15 - row_sum
-            row[max_index] += row_cost
-            # cost += row_cost
-            numbers_used += row
+    perms = [list(p) for p in sorted(permutations(range(1, 10), 9))]
+    # print('perms[:5]', perms[:5])
 
-        if sum(row) > 15: # 15 is the Magic Number
-            row_sum = sum(row)
-            sorted_row = sorted(row, reverse=True)
-            max_value = sorted_row[0]
-            if max_value in numbers_used:
-                max_value = sorted_row[1]
-                if max_value in numbers_used:
-                    max_value = sorted_row[2]
-            max_index = row.index(max_value)
-            row_cost = row_sum - 15
-            row[max_index] -= row_cost
-            # cost += row_cost
-            numbers_used += row
+    magic_squares = []
+    for p in perms:
+        if  sum(p[:3])  == 15 \
+        and sum(p[3:6]) == 15 \
+        and sum(p[6:])  == 15 \
+        and sum([p[0],p[3],p[6]]) == 15 \
+        and sum([p[1],p[4],p[7]]) == 15 \
+        and sum([p[2],p[5],p[8]]) == 15 \
+        and sum([p[0],p[4],p[8]]) == 15 \
+        and sum([p[2],p[4],p[6]]) == 15:
+            magic_squares.append(p)
 
-    print(s)
-    
-    numbers_used = []
-    for c in range(len(s[0])): # assuming its a square matrix
-        column = [row[c] for row in s]
-        print(sum(column))
-        if sum(column) < 15:
-            column_sum = sum(column)
-            sorted_column = sorted(column, reverse=True)
-            max_value = sorted_column[0]
-            if max_value in numbers_used:
-                max_value = sorted_column[1]
-                if max_value in numbers_used:
-                    max_value = sorted_column[2]
-            max_index = column.index(max_value)
-            column_cost = 15 - column_sum
-            s[max_index][c] += column_cost
-            # cost += column_cost
-            numbers_used += column
+    print('magic_squares', magic_squares)
 
-        if sum(column) > 15: # 15 is the Magic Number
-            column_sum = sum(column)
-            sorted_column = sorted(column, reverse=True)
-            max_value = sorted_column[0]
-            if max_value in numbers_used:
-                max_value = sorted_column[1]
-                if max_value in numbers_used:
-                    max_value = sorted_column[2]
-            max_index = column.index(max_value)
-            column_cost = column_sum - 15
-            s[max_index][c] -= column_cost
-            # cost += column_cost
-            numbers_used += column
-    
-    print('original_matrix', original_matrix)
-    print('s:', s)
+    costs = []
+    for i in original_list:
+        for magic_square in magic_squares:
+            cost = []
+            for number in magic_square:
+                cost.append(abs(i - number))
+                # print('cost:', cost)
+        costs.append(sum(cost))
+        print('costs:', costs)
 
-    differences = []
-    for original, final in zip(original_matrix, s):
-        print('o:', original, 'f', final)
-        differences.append([o - f for o, f in zip(original, final)])
+    print(costs)
+    print(min(costs))
 
-    print(differences)
-
-    cost = abs(sum([sum(i) for i in differences]))
-
-    return cost
+    # return min(costs)
 
 # Main
 if __name__ == '__main__':
     fptr = tempfile.NamedTemporaryFile(mode='w')
-    
+
     s = []
 
     for _ in range(3):
