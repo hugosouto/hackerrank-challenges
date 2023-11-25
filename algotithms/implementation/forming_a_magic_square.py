@@ -27,27 +27,27 @@ raw_data = '''\
     # Expected Output:
     # 7
 
-# raw_data = '''\
-# 4 9 2
-# 3 5 7
-# 8 1 5
-# '''
+raw_data = '''\
+4 9 2
+3 5 7
+8 1 5
+'''
     # Expected Output:
     # 1
 
-# raw_data = '''\
-# 4 8 2
-# 4 5 7
-# 6 1 6
-# '''
+raw_data = '''\
+4 8 2
+4 5 7
+6 1 6
+'''
     # Expected Output:
     # 4
 
-# raw_data = '''\
-# 4 5 8
-# 2 4 1
-# 1 9 7
-# '''
+raw_data = '''\
+4 5 8
+2 4 1
+1 9 7
+'''
     # Expected Output:
     # 14
 
@@ -56,42 +56,40 @@ input = StringIO(raw_data)
 
 # Function
 def formingMagicSquare(s):
+    '''
+    Calculates the minimum cost required to convert a given 3x3 matrix into a magic square.
 
-    print('s', s)
+    Args:
+        s (list): A 3x3 matrix representing the initial square.
+
+    Returns:
+        int: The minimum cost required to convert the matrix into a magic square.
+    '''
+    
     original_list = [i for sub in s for i in sub]
-    print('original_list', original_list)
 
     perms = [list(p) for p in sorted(permutations(range(1, 10), 9))]
-    # print('perms[:5]', perms[:5])
 
     magic_squares = []
     for p in perms:
-        if  sum(p[:3])  == 15 \
+        if sum(p[:3]) == 15 \
         and sum(p[3:6]) == 15 \
-        and sum(p[6:])  == 15 \
-        and sum([p[0],p[3],p[6]]) == 15 \
-        and sum([p[1],p[4],p[7]]) == 15 \
-        and sum([p[2],p[5],p[8]]) == 15 \
-        and sum([p[0],p[4],p[8]]) == 15 \
-        and sum([p[2],p[4],p[6]]) == 15:
+        and sum(p[6:]) == 15 \
+        and sum([p[0], p[3], p[6]]) == 15 \
+        and sum([p[1], p[4], p[7]]) == 15 \
+        and sum([p[2], p[5], p[8]]) == 15 \
+        and sum([p[0], p[4], p[8]]) == 15 \
+        and sum([p[2], p[4], p[6]]) == 15:
             magic_squares.append(p)
 
-    print('magic_squares', magic_squares)
-
     costs = []
-    for i in original_list:
-        for magic_square in magic_squares:
-            cost = []
-            for number in magic_square:
-                cost.append(abs(i - number))
-                # print('cost:', cost)
+    for magic_square in magic_squares:
+        cost = []
+        for position in range(len(original_list)):
+            cost.append(abs(original_list[position]-magic_square[position]))
         costs.append(sum(cost))
-        print('costs:', costs)
 
-    print(costs)
-    print(min(costs))
-
-    # return min(costs)
+    return min(costs)
 
 # Main
 if __name__ == '__main__':
