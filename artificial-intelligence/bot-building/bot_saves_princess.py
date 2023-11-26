@@ -20,22 +20,22 @@ raw_data = ('''3
     # DOWN
     # RIGHT
 
-# raw_data = ('''3
-# --p
-# -m-
-# ---
-# ''')
+raw_data = ('''3
+--p
+-m-
+---
+''')
     # Expected Output
     # UP
     # RIGHT
 
-raw_data = ('''5
-p----
------
---m--
------
------
-''')
+# raw_data = ('''5
+# p----
+# -----
+# --m--
+# -----
+# -----
+# ''')
     # Expected Output
     # RIGHT
     # RIGHT
@@ -47,91 +47,29 @@ input = StringIO(raw_data)
 
 # Function
 def displayPathtoPrincess(n, grid):
-    if grid[n-1][n-1] == 'p':
-        if n == 3:
-            print('DOWN\nRIGHT')
-        else:
-            print('DOWN\nRIGHT\n' * ((n//2)-1), 'DOWN\nRIGHT', sep='')
-    if grid[n-1][0] == 'p':
-        if n == 3:
-            print('DOWN\nLEFT')
-        else:
-            print('DOWN\nLEFT\n' * ((n//2)-1), 'DOWN\nLEFT', sep='')
-    if grid[0][n-1] == 'p':
-        if n == 3:
-            print('UP\nRIGHT')
-        else:
-            print('UP\nRIGHT\n' * ((n//2)-1), 'UP\nRIGHT', sep='')
-    if grid[0][0] == 'p':
-        if n == 3:
-            print('UP\nLEFT')
-        else:
-            print('UP\nLEFT\n' * ((n//2)-1), 'UP\nLEFT', sep='')
-
-#     # Set start position at the center
-#     start_line, start_column = n//2, n//2
+    m = int((n-1)/2)
+    path = ''
+    search = []
     
-#     def SetToStart(n, grid, start_line=start_line, start_column=start_line):
-#         # Set current line and column
-#         line, column = start_line, start_column
-#         # Set initial position
-#         position = grid[start_line][start_column]
-#         # Walks to upper left
-#         return line, column, position
-    
-    # print(line, column, position)
+    for position in grid:
+        search.append(list(position))
 
-    # Set position on the center
-    # line, column, position = SetToStart(n, grid)
-
-    # Walks to bottom right
-    # if grid[n-1][n-1] == 'p':
-    #     print('DOWN\nRIGHT\n' * (n//2))
-        
-    # # Set position on the center
-    # # line, column, position = SetToStart(n, grid)
+    for row in range(n):
+        for col in range(n):
+            if search[row][col]=='p' and row==0 and col==0:
+                path += m*'UP\n'
+                path += m*'LEFT\n'
+            elif search[row][col]=='p' and row==0 and col==n-1:
+                path += m*'UP\n'
+                path += m*'RIGHT\n'
+            elif search[row][col]=='p' and row==n-1 and col==0:
+                path += m*'DOWN\n'
+                path += m*'LEFT\n'
+            elif search[row][col]=='p' and row==n-1 and col==n-1:
+                path += m*'DOWN\n'
+                path += m*'RIGHT\n'
     
-    # # Walks to bottom left
-    # if grid[n-1][0] == 'p':
-    #     while position != 'p':
-    #         for _ in range(start_line):
-    #             print('DOWN')
-    #             line += 1
-    #             position = grid[line][column]
-    #         for _ in range(start_column):
-    #             print('LEFT')
-    #             column -= 1
-    #             position = grid[line][column]
-
-    # # Set position on the center
-    # # line, column, position = SetToStart(n, grid)
-    
-    # # Walks to up left
-    # if grid[0][n-1] == 'p':
-    #     while position != 'p':
-    #         for _ in range(start_line):
-    #             print('UP')
-    #             line -= 1
-    #             position = grid[line][column]
-    #         for _ in range(start_column):
-    #             print('LEFT')
-    #             column -= 1
-    #             position = grid[line][column]
-
-    # # Set position on the center
-    # # line, column, position = SetToStart(n, grid)
-    
-    # # Walks to up right
-    # if grid[0][n-1] == 'p':
-    #     while position != 'p':
-    #         for _ in range(start_line):
-    #             print('UP')
-    #             line -= 1
-    #             position = grid[line][column]
-    #         for _ in range(start_column):
-    #             print('RIGHT')
-    #             column += 1
-    #             position = grid[line][column]
+    return print(path)
             
 m = int(input.readline())
 grid = [] 
