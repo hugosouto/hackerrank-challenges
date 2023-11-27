@@ -35,27 +35,23 @@ input = StringIO(raw_data)
 
 # Function
 def pickingNumbers(a):
+    '''
+    Finds the maximum length of a subarray in which the absolute difference between any two elements is at most 1.
+
+    Args:
+        a (list): A list of integers.
+
+    Returns:
+        int: The maximum length of a subarray.
+    '''
     numbers = sorted(a)
-    print(numbers)
-
-    lenghts = []
-    sub = []
-
-    print(range(len(numbers)))
-
-    for slice_begin in range(0, len(numbers) - 1):
-        print('slice_begin', numbers[slice_begin])
-        # cursor = numbers[slice_begin + 1]
-        for slice_end in range(slice_begin + 1, len(numbers) - 1):
-            if slice_end - slice_begin <= 1:
-                slice_end += 1
-                print('slice_end', slice_end)
-            else:
-                lenghts.append(len(numbers[slice_begin:slice_end]))
-        # print(sub)
-    print('lenghts', lenghts)
-
-    return max(lenghts)
+    lengths = []
+    begin, end = 0, 1
+    for begin in range(0, len(numbers)-1):
+        for end in range(1, len(numbers)):
+            if numbers[end] - numbers[begin] <= 1:
+                lengths.append(len(numbers[begin:end+1]))
+    return max(lengths)
 
 # Main
 if __name__ == '__main__':
