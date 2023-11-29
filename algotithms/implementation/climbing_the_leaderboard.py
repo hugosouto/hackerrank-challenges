@@ -58,6 +58,7 @@ def climbingLeaderboard(ranked, player):
 
     ranked = sorted(list(set(ranked)), reverse=True)
 
+    # TODO: change code to iterate in range(len())
     score, scores = 0, []
     for p in player:
         for r in ranked:
