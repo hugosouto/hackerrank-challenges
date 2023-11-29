@@ -45,7 +45,31 @@ input = StringIO(raw_data)
 
 # Function
 def climbingLeaderboard(ranked, player):
-    return 'result'
+    '''
+    Calculates the rank of each player in the leaderboard based on their scores.
+
+    Parameters:
+    ranked (list): A list of integers representing the scores of the players in the leaderboard.
+    player (list): A list of integers representing the scores of the players to be ranked.
+
+    Returns:
+    list: A list of integers representing the ranks of the players in the leaderboard.
+    '''
+
+    ranked = sorted(list(set(ranked)), reverse=True)
+
+    score, scores = 0, []
+    for p in player:
+        for r in ranked:
+            if p == r:
+                score = ranked.index(r)+1
+            if p < r:
+                score = ranked.index(r)+2
+            ranked.append(p)
+            ranked = sorted(list(set(ranked)), reverse=True)
+        scores.append(score)
+
+    return scores
 
 # Main
 if __name__ == '__main__':
