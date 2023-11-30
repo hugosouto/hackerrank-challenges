@@ -55,8 +55,8 @@ def climbingLeaderboard(ranked, player):
     Returns:
     list: A list of integers representing the ranks of the players in the leaderboard.
     '''
-
-    ranked = sorted(list(set(ranked)), reverse=True)
+    def rerank(ranked):
+        return (sorted(list(set(ranked)), reverse=True))
 
     # TODO: change code to iterate in range(len())
     score, scores = 0, []
@@ -67,7 +67,9 @@ def climbingLeaderboard(ranked, player):
             if p < r:
                 score = ranked.index(r)+2
             ranked.append(p)
-            ranked = sorted(list(set(ranked)), reverse=True)
+            ranked = rerank(ranked)
+        print(ranked)
+        print(scores)
         scores.append(score)
 
     return scores
