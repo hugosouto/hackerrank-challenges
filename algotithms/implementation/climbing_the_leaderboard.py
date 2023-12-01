@@ -77,11 +77,11 @@ def climbingLeaderboard(ranked, player):
     def rerank(ranked):
         return sorted(set(ranked), reverse=True)
 
-    # ranked = rerank(ranked)
 
     # print('ranked:', ranked)
     # print('player:', player)
 
+    # TODO: Optimize logic related to ordering
     score, scores = 0, []
     for p in range(len(player)):
         # print('p:', player[p])
