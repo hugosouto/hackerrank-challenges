@@ -81,6 +81,7 @@ def climbingLeaderboard(ranked, player):
     # print('ranked:', ranked)
     # print('player:', player)
 
+    #TODO: Refactor code to insert score using slicing
     score, scores = 0, []
     for p in range(len(player)):
         # print('p:', player[p])
