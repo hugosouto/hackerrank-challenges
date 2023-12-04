@@ -30,11 +30,11 @@ raw_data = '''7
     # 2
     # 1
 
-# raw_data = '''6
-# 100 90 90 80 75 60
-# 5
-# 50 65 77 90 102
-# '''
+raw_data = '''6
+100 90 90 80 75 60
+5
+50 65 77 90 102
+'''
     # Expected Output:
     # 6
     # 5
@@ -78,10 +78,9 @@ def climbingLeaderboard(ranked, player):
         return sorted(set(rank)) # , reverse=True
 
     ranked = rerank(ranked)
-    # print('ranked:', ranked)
+    # print('ranked:', ranked, len(ranked))
     # print('player:', player)
 
-    #TODO: Refactor code to insert score using slicing
     score, scores = 0, []
     for p in range(len(player)):
         # print('p:', player[p])
@@ -90,14 +89,16 @@ def climbingLeaderboard(ranked, player):
             # print('len(ranked):', len(ranked))
             if player[p] > ranked[len(ranked)-1]:
                 score = 1
+                ranked = ranked[:] + [player[p]]
                 break
             elif player[p] < ranked[r]:
-                score = len(ranked) - ranked.index(ranked[r])+1
+                score = (len(ranked) - ranked.index(ranked[r])) + 1
+                ranked = ranked[:r] + [player[p]] + ranked[r:]
                 break
             elif player[p] == ranked[r]:
                 score = len(ranked) - ranked.index(ranked[r])
                 break
-            ranked.append(player[p])
+            # ranked.append(player[p])
             ranked = rerank(ranked)
         scores.append(score)
         # print(scores)
