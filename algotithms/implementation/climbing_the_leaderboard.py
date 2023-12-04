@@ -81,6 +81,7 @@ def climbingLeaderboard(ranked, player):
     # print('ranked:', ranked, len(ranked))
     # print('player:', player)
 
+    # TODO: Refactor to binary search
     score, scores = 0, []
     for p in range(len(player)):
         # print('p:', player[p])
