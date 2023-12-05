@@ -9,11 +9,7 @@ Problem: https://www.hackerrank.com/challenges/climbing-the-leaderboard/problem
 '''
 
 # Imports
-import math
-import os
-import random
-import re
-import sys
+import requests
 import tempfile
 from time import time
 from io import StringIO
@@ -30,11 +26,11 @@ raw_data = '''7
     # 2
     # 1
 
-# raw_data = '''6
-# 100 90 90 80 75 60
-# 5
-# 50 65 77 90 102
-# '''
+raw_data = '''6
+100 90 90 80 75 60
+5
+50 65 77 90 102
+'''
     # Expected Output:
     # 6
     # 5
@@ -43,21 +39,23 @@ raw_data = '''7
     # 1
 
 raw_data = '''100
-8602686 8546271 8526715 8519247 8415976 8361529 8342931 8303364 8291180 7848549 7847864 7823851 7773936 7699327 7602749 7540526 7385441 7366433 7337630 7272373 7187504 7175749 7023343 7016216 7010723 6889607 6863558 6591329 6531546 6426286 6407031 6365870 6311121 6221977 5801839 5747997 5730472 5724599 5424544 5354783 5296128 5295458 5238523 5149248 4850739 4791108 4763665 4750185 4719109 4526021 4494678 4449061 4362767 4237908 4213229 4207655 4169092 4138237 3938541 3790285 3766792 3754053 3632939 3617582 3608983 3521123 3330943 3279031 3227047 3094550 3025172 3009534 2943676 2904654 2809765 2551266 2428570 2301374 2254113 2231034 2228132 2208756 1810975 1702807 1698924 1668930 1654148 1536080 1477819 1328232 1000898 925673 874028 630208 524009 502548 387784 283346 59336 17498
-50
-391846 801454 932294 992081 1432552 1433244 1436692 1463582 1703613 1762894 1794359 1800192 1894975 1913203 1964838 2005948 2047999 2383858 2684319 2743219 2836582 3152591 3238095 3318511 3402656 3496157 3506024 3597120 3638481 3642843 3670712 3726377 4150638 4554272 4802824 4857664 4898431 5012543 5280270 5364626 5676136 5876874 6022361 6028227 6245061 6328848 6580175 6589494 6791072 6972786
-'''
+295 294 291 287 287 285 285 284 283 279 277 274 274 271 270 268 268 268 264 260 259 258 257 255 252 250 244 241 240 237 236 236 231 227 227 227 226 225 224 223 216 212 200 197 196 194 193 189 188 187 183 182 178 177 173 171 169 165 143 140 137 135 133 130 130 130 128 127 122 120 116 114 113 109 106 103 99 92 85 81 69 68 63 63 63 61 57 51 47 46 38 30 28 25 22 15 14 12 6 4
+200
+5 5 6 14 19 20 23 25 29 29 30 30 32 37 38 38 38 41 41 44 45 45 47 59 59 62 63 65 67 69 70 72 72 76 79 82 83 90 91 92 93 98 98 100 100 102 103 105 106 107 109 112 115 118 118 121 122 122 123 125 125 125 127 128 131 131 133 134 139 140 141 143 144 144 144 144 147 150 152 155 156 160 164 164 165 165 166 168 169 170 171 172 173 174 174 180 184 187 187 188 194 197 197 197 198 201 202 202 207 208 211 212 212 214 217 219 219 220 220 223 225 227 228 229 229 233 235 235 236 242 242 245 246 252 253 253 257 257 260 261 266 266 268 269 271 271 275 276 281 282 283 284 285 287 289 289 295 296 298 300 300 301 304 306 308 309 310 316 318 318 324 326 329 329 329 330 330 332 337 337 341 341 349 351 351 354 356 357 366 369 377 379 380 382 391 391 394 396 396 400
+# '''
     # Expected Output:
-    # 997
-    # 994
-    # 992
-    # 992
+    # 88
+    # 88
+    # 87
+    # 85
     # ...
-    # 19
-    # 18
-    # 16
-    # 14
     # 1
+    # 1
+    # 1
+    # 1
+
+# raw_data = requests.get('https://hr-testcases-us-east-1.s3.amazonaws.com/29530/input07.txt?response-content-type=text%2Fplain&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAR6O7GJNX5DNFO3PV%2F20231205%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231205T195021Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=c9592693ddb39d4b296fbece58b2cdfe7b2dc1f4bd0883f62b15291b4769a31e').text
+
 
 # Data
 input = StringIO(raw_data)
@@ -74,32 +72,33 @@ def climbingLeaderboard(ranked, player):
     Returns:
     list: A list of integers representing the ranks of the players in the leaderboard.
     '''
-    def rerank(rank):
+    def rerank(rank, cut=0):
+        rank = rank[cut:]
         return sorted(set(rank))
 
     ranked = rerank(ranked)
-    lenght = len(ranked)
-    # print('player:', player)
-    # print('ranked:', ranked)
-    # print('lenght:', lenght)
+    print('player:', player)
+    print('ranked:', ranked)
 
-    score, scores = 0, []
+    score, scores = 0, [0]
     for p in range(len(player)):
         # print(p, player[p])
         if player[p] < ranked[0]:
-            score = lenght+1
+            score = len(ranked)+1
         elif player[p] == ranked[0]:
-            score = lenght
+            score = len(ranked)
         else:
             for r in range(len(ranked)):
                 if player[p] >= ranked[r]:
                     score = len(ranked)-r
         scores.append(score)
         ranked.append(player[p])
-        ranked = rerank(ranked)
-        # print('ranked', ranked)
+        ranked = rerank(ranked, -scores[-1])
+        print('ranked', ranked)
+        print('scores:', scores[1:])
+        print('')
 
-    return scores
+    return scores[1:]
 
 # Main
 if __name__ == '__main__':
@@ -115,6 +114,7 @@ if __name__ == '__main__':
 
     tic = time()
     result = climbingLeaderboard(ranked, player)
+    print(ranked[:10])
     tac = time()
 
     print('Runtime:', tac-tic)
