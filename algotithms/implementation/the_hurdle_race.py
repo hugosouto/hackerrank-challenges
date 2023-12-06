@@ -21,7 +21,8 @@ raw_data = '''5 4
 1 6 3 5 2
 '''
     # Expected Output:
-    # 
+    # 2
+
 raw_data = '''5 7
 2 5 4 5 2
 '''
@@ -33,7 +34,20 @@ input = StringIO(raw_data)
 
 # Function
 def hurdleRace(k, height):
-    return result
+    '''
+    Calculates the minimum number of potions needed to overcome the hurdles.
+
+    Parameters:
+    k (int): The maximum height the character can jump without consuming a potion.
+    height (list): A list of integers representing the heights of the hurdles.
+
+    Returns:
+    int: The minimum number of potions needed to overcome the hurdles.
+    '''
+    potions = 0
+    if max(height) > k:
+        potions = max(height)-k
+    return potions
 
 # Main
 if __name__ == '__main__':
