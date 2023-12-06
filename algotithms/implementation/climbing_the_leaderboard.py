@@ -62,49 +62,28 @@ input = StringIO(raw_data)
 
 # Function
 def climbingLeaderboard(ranked, player):
-    '''
-    Calculates the rank of each player in the leaderboard based on their scores.
+    
+    def rerank(rank, cut=0):
+        rank = rank[cut:]
+        return sorted(set(rank))
 
-    Parameters:
-    ranked (list): A list of integers representing the scores of the players in the leaderboard.
-    player (list): A list of integers representing the scores of the players to be ranked.
+    ranked = rerank(ranked)
 
-    Returns:
-    list: A list of integers representing the ranks of the players in the leaderboard.
-    '''
-    ranked = sorted(set(ranked))
-    print('player:', player)
-    print('ranked:', ranked)
-
-    score, scores = 0, [0]
+    score, scores = 0, []
     for p in range(len(player)):
-        print('p:', p, player[p])
         if player[p] < ranked[0]:
             score = len(ranked)+1
-            ranked = [player[p]] + ranked
         elif player[p] == ranked[0]:
             score = len(ranked)
         else:
             for r in range(len(ranked)):
-                print('r:', r, ranked[r], ranked)
-                if player[p] == ranked[r]:
+                if player[p] >= ranked[r]:
                     score = len(ranked)-r
-                    break
-                elif player[p] < ranked[r]:
-                    score = len(ranked) - r+1
-                    ranked = [player[p]] + ranked[-scores[-1]:]
-                    break
-                elif player[p] > ranked[-1]:
-                    score = 1
-                    ranked.append(player[p])
-                    break
-        print(ranked)
         scores.append(score)
-        print('ranked:', ranked)
-        print('scores:', scores[1:])
-        print('')
+        ranked.append(player[p])
+        ranked = rerank(ranked, -scores[-1])
 
-    return scores[1:]
+    return scores
 
 # Main
 if __name__ == '__main__':
