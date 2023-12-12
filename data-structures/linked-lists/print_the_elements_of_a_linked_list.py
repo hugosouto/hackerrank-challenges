@@ -9,6 +9,7 @@ Problem: https://www.hackerrank.com/challenges/[...]/problem
 '''
 
 # Imports
+import itertools
 import math
 import os
 import random
@@ -52,7 +53,17 @@ input = StringIO(raw_data)
 
 # Function
 def printLinkedList(head):
-    return None
+    # print(getattr(llist, 'head'))
+    # print(getattr(llist, 'tail'))
+
+    # print(llist)
+    
+    # node = head
+    print(llist.__dict__.items())
+    # for key, value in llist.__dict__.items():
+        # print(key, value)
+    
+    # return None
 
 # Main
 if __name__ == '__main__':
@@ -65,7 +76,7 @@ if __name__ == '__main__':
     for _ in range(llist_count):
         llist_item = int(input.readline())
         llist.insert_node(llist_item)
-
+    
     printLinkedList(llist.head)
 
     fptr.close()
