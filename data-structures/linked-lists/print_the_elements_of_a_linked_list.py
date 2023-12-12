@@ -5,11 +5,10 @@ Topic: Problem Solving (Basic)
 Max Score: 5
 Success Rate: 97.20%
 Task: Get started with Linked Lists!
-Problem: https://www.hackerrank.com/challenges/[...]/problem
+Problem: https://www.hackerrank.com/challenges/print-the-elements-of-a-linked-list/problem?isFullScreen=true
 '''
 
 # Imports
-import itertools
 import math
 import os
 import random
@@ -48,22 +47,36 @@ raw_data = '''2
     # 16
     # 13
 
+raw_data = '''4
+17
+19
+5
+12
+'''
+    # Expected Output:
+    # 17
+    # 19
+    # 5
+    # 12
+
 # Data
 input = StringIO(raw_data)
 
 # Function
 def printLinkedList(head):
-    # print(getattr(llist, 'head'))
-    # print(getattr(llist, 'tail'))
+    '''
+    Prints the elements of a linked list.
 
-    # print(llist)
-    
-    # node = head
-    print(llist.__dict__.items())
-    # for key, value in llist.__dict__.items():
-        # print(key, value)
-    
-    # return None
+    Parameters:
+    - head: The head node of the linked list.
+
+    Returns:
+    None
+    '''
+    position = head
+    while position != None:
+        print(position.data)
+        position = position.next
 
 # Main
 if __name__ == '__main__':
