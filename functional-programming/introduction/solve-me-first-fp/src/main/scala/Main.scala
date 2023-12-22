@@ -4,8 +4,8 @@ Difficulty: Easy
 Topic: Problem Solving (Basic)
 Max Score: 3
 Success Rate: 97.81%
-Task: This is a special challenge to make you familiar with IO.
-Problem: https://www.hackerrank.com/challenges/[...]/problem
+Task: Your task is to scan two numbers and print the sum.
+Problem: https://www.hackerrank.com/challenges/fp-solve-me-first/problem?isFullScreen=true
 */
 
 // Imports
@@ -16,8 +16,8 @@ import java.util.Scanner
 val raw_data = """2
 3
 """
-// Expected Output:
-// 
+    // Expected Output:
+    // 5
 
 // Data
 val input = new Scanner(new StringReader(raw_data))
