@@ -13,4 +13,11 @@ package introduction
 // Sample Input:
 // (Nil)  
 
-def f() = println("")
+// Sample Output:
+// Hello World
+
+// Testcases:
+// (Nil)
+
+// Solution:
+def f() = println("Hello World")
