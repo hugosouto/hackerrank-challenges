@@ -8,16 +8,15 @@ Task: Write code to print the 'Hello World' program.
 Link: https://www.hackerrank.com/challenges/fp-hello-world/problem
 */
 
-package introduction
-
 // Sample Input:
-// (Nil)  
-
+    // (Nil)
 // Sample Output:
-// Hello World
-
-// Testcases:
-// (Nil)
+    // Hello World
 
 // Solution:
 def f() = println("Hello World")
+
+// Main:
+object HelloWorldRunner {
+    def main(args: Array[String]) = f()
+}
